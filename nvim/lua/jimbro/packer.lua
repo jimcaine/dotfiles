@@ -2,25 +2,16 @@ return require('packer').startup(function(use)
   -- package manager
   use 'wbthomason/packer.nvim'
 
-
-  -- navigation
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
-  use('theprimeagen/harpoon')
-  use 'nvim-tree/nvim-web-devicons'
-  use('nvim-tree/nvim-tree.lua')
-
-  -- styles
+  -- dashboard / startup screen
   use('mhinz/vim-startify')
 
+  -- style
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 
+  use('xiyaowong/transparent.nvim')
   use('mhartington/oceanic-next')
   use('tstelzer/welpe.vim')
   use('whatyouhide/vim-gotham')
@@ -40,6 +31,25 @@ return require('packer').startup(function(use)
           })
       end
   })
+
+  -- project find / sed
+  use({
+    "ray-x/sad.nvim",
+    requires = { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+    config = function()
+      require("sad").setup{}
+    end,
+  })
+
+  -- navigation
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  use('theprimeagen/harpoon')
+  use 'nvim-tree/nvim-web-devicons'
+  use('nvim-tree/nvim-tree.lua')
 
   -- repl
   use('jpalardy/vim-slime')

@@ -22,5 +22,5 @@ end
 vim.keymap.set("n", "<leader>cc", ":lua SetRandomColorScheme()<CR>")
 vim.keymap.set("n", "<leader>cv", ":TransparentToggle<CR>")
 
-InitColorScheme()
+SetRandomColorScheme()
 vim.cmd(":TransparentEnable")

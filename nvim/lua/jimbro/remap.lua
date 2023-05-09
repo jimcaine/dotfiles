@@ -9,10 +9,10 @@ vim.keymap.set("i", "kj", "<Esc>")
 vim.keymap.set("n", "<leader>ee", vim.cmd.Ex)
 
 -- window navigation
-vim.keymap.set("n", "<leader>xx", "<C-w><C-j>")
-vim.keymap.set("n", "<leader>cc", "<C-w><C-k>")
-vim.keymap.set("n", "<leader>zz", "<C-w><C-h>")
-vim.keymap.set("n", "<leader>vv", "<C-w><C-l>")
+vim.keymap.set("n", "<leader>jj", "<C-w><C-j>")
+vim.keymap.set("n", "<leader>kk", "<C-w><C-k>")
+vim.keymap.set("n", "<leader>hh", "<C-w><C-h>")
+vim.keymap.set("n", "<leader>ll", "<C-w><C-l>")
 
 -- buffers
 vim.keymap.set("n", "<leader>bd", ":bufdo bd<CR>")

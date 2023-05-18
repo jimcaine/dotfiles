@@ -13,6 +13,8 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use('nvim-tree/nvim-tree.lua')
 
+  use('natecraddock/workspaces.nvim')
+
   -- styles
   use('mhinz/vim-startify')
 

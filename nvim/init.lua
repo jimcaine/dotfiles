@@ -1,1 +1,2 @@
-require("jimbro")
+require("jimbro.core")
+require("jimbro.lazy")

@@ -1,0 +1,2 @@
+# spotify
+alias spotify='flatpak run com.spotify.Client &'

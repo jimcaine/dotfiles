@@ -16,10 +16,10 @@ function TransparentToggle()
 end
 
 return {
-  "folke/tokyonight.nvim",
+  "EdenEast/nightfox.nvim",
   lazy = false,
   config = function()
-    vim.cmd([[colorscheme tokyonight]])
+    vim.cmd([[colorscheme nightfox]])
   end,
   keys = {
     { "<leader>ut", TransparentToggle, desc = "Toggle transparent background" }

@@ -1,5 +1,3 @@
-
-
 local hyper = {"ctrl", "alt", "cmd"}
 
 -- hs.loadSpoon("MiroWindowsManager")
@@ -8,6 +6,22 @@ local wm = require('window-management')
 
 hs.hotkey.bind(hyper, "space", function()
   wm.windowMaximize(0)
+end)
+
+hs.hotkey.bind(hyper, "7", function()
+  wm.moveWindowToPosition(wm.screenPositions.halves_left)
+end)
+
+hs.hotkey.bind(hyper, "8", function()
+  wm.moveWindowToPosition(wm.screenPositions.twothirds_left)
+end)
+
+hs.hotkey.bind(hyper, "9", function()
+  wm.moveWindowToPosition(wm.screenPositions.twothirds_right)
+end)
+
+hs.hotkey.bind(hyper, "0", function()
+  wm.moveWindowToPosition(wm.screenPositions.halves_right)
 end)
 
 hs.hotkey.bind(hyper, "right", function()

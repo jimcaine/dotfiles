@@ -20,6 +20,34 @@ screenPositions.center = {
   h = GRID_SIZE - 2,
 }
 
+screenPositions.halves_left = {
+  x = 0,
+  y = 0,
+  w = HALF_GRID_SIZE,
+  h = GRID_SIZE,
+}
+
+screenPositions.halves_right = {
+  x = HALF_GRID_SIZE,
+  y = 0,
+  w = HALF_GRID_SIZE,
+  h = GRID_SIZE,
+}
+
+screenPositions.twothirds_left = {
+  x = 0,
+  y = 0,
+  w = WIDTH * 2,
+  h = GRID_SIZE,
+}
+
+screenPositions.twothirds_right = {
+  x = WIDTH,
+  y = 0,
+  w = WIDTH * 2,
+  h = GRID_SIZE,
+}
+
 screenPositions.u1 = {
   x = 0,
   y = 0,

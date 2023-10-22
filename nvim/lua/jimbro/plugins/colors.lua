@@ -10,6 +10,9 @@ function TransparentToggle()
     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none", ctermbg = "none" })
     vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none", ctermbg = "none" })
     vim.api.nvim_set_hl(0, "NonText", { bg = "none", ctermbg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTree", { bg = "none", ctermbg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none", ctermbg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none", ctermbg = "none" })
   end
 
   transparent_active = not transparent_active

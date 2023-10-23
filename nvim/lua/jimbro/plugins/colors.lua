@@ -23,6 +23,7 @@ return {
   lazy = false,
   config = function()
     vim.cmd([[colorscheme nightfox]])
+    TransparentToggle()
   end,
   keys = {
     { "<leader>ut", TransparentToggle, desc = "Toggle transparent background" }

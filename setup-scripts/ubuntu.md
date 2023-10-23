@@ -139,7 +139,18 @@ sudo apt install -y gnome-tweak-tool
 
 ## gnome keyboard remappings
 ```bash
-gsettings set org.gnome.desktop.input-sources xkb-options = ['ctrl:swap_lwin_lctl']
+# swap ctrl and super keys
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swap_lwin_lctl']"
+
+# ctrl t to swap applications
+gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Primary>Tab']"
+
+# workspace shuffle
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>Right']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>Left']"
+
+# spotlight
+gsettings set org.gnome.shell.keybindings toggle-application-view "['<Primary>space']"
 ```
 
 ## gnome extensions
@@ -153,14 +164,6 @@ Current way:
 wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
 chmod +x gnome-shell-extension-installer
 sudo mv gnome-shell-extension-installer /usr/bin/
-```
-
-## workspace keyboard bindings
-```bash
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Control>Left']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Control>Right']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Control>Up']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Control>Down']"
 ```
 
 ## docker

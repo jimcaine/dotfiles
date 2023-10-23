@@ -6,6 +6,11 @@ sudo apt update
 sudo apt upgrade
 ```
 
+## install snap package manager
+```bash
+sudo apt install snapd
+```
+
 ## zshell
 ```bash
 sudo apt-get install -y zsh
@@ -114,7 +119,7 @@ cp -r ~/.dotfiles/alacritty ~/.config/alacritty
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-# nerd fonts
+## nerd fonts
 ```bash
 mkdir -p ~/.fonts
 cd ~/.fonts
@@ -126,17 +131,88 @@ sudo fc-cache -fv
 cd
 ```
 
-# gnome extensions
+## gnome tweaks
+```bash
+sudo add-apt-repository universe
+sudo apt install -y gnome-tweak-tool
+```
+
+## gnome keyboard remappings
+```bash
+gsettings set org.gnome.desktop.input-sources xkb-options = ['ctrl:swap_lwin_lctl']
+```
+
+## gnome extensions
+Try this way:
+```bash
+sudo snap install -y gnome-extension-manager
+```
+
+Current way:
 ```bash
 wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
 chmod +x gnome-shell-extension-installer
 sudo mv gnome-shell-extension-installer /usr/bin/
 ```
 
-# workspace keyboard bindings
+## workspace keyboard bindings
 ```bash
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Control>Left']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Control>Right']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Control>Up']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Control>Down']"
+```
+
+## docker
+Reference: https://docs.docker.com/engine/install/ubuntu/
+```bash
+# add docker official gpg key
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# add repo to apt sources
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+# install docker packages
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# create docker group and add current user
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
+## openssh
+Download and run Open SSH server: https://ubuntu.com/server/docs/service-openssh
+```bash
+sudo apt install -y openssh-client openssh-server
+sudo systemctl restart sshd.service
+```
+
+## firewall - ufw
+Update docker configuration to ensure iptables are not overwritten: https://stackoverflow.com/questions/30383845/what-is-the-best-practice-of-docker-ufw-under-ubuntu
+Update file: /etc/docker/daemon.json
+```json
+{
+    "iptables": false
+}
+```
+
+Install and setup ufw: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-20-04
+```bash
+sudo apt install -y ufw
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow from <whitelist-ip>
+```
+
+# aliases
+```bash
+alias watch_dconf='dconf watch /'
 ```

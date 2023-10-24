@@ -1,0 +1,64 @@
+mouse:
+  bindings:
+    action: "Paste"
+    mouse: "Right"
+
+window:
+  opacity: 0.75
+  # decorations: "none"
+  padding:
+    x: 20
+    y: 28
+
+font:
+  size: 14.0
+  normal:
+    family: "MesloLGS NF"
+    style: "Regular"
+
+colors:
+  primary:
+    background: "#0b0d0e"
+    foreground: "#e5c49e"
+  cursor:
+    text: "#061822"
+    cursor: "#feaf3c"
+  normal:
+    black: "#1d485f"
+    red: "#db662d"
+    green: "#008eab"
+    yellow: "#feaf3c"
+    blue: "#255a62"
+    magenta: "#77dbf4"
+    cyan: "#5fb1c2"
+    white: "#e5c49e"
+  bright:
+    black: "#545d65"
+    red: "#dd998a"
+    green: "#739da8"
+    yellow: "#fedaae"
+    blue: "#0cc7e3"
+    magenta: "#c6e8f1"
+    cyan: "#97b9c0"
+    white: "#ffe8d6"
+
+# [[mouse.bindings]]
+# action = "Paste"
+# mouse = "Right"
+# [window.padding]
+# x = 2
+# y = 5
+# [font]
+# size = 10.0
+# [font.normal]
+# family = "Hack Nerd Font Mono"
+# style = "Regular"
+# [font.bold]
+# family = "Hack Nerd Font Mono, Bold"
+# style = "Bold"
+# [font.italic]
+# family = "Hack Nerd Font Mono, Regular Italic"
+# style = "Italic"
+# [font.bold_italic]
+# family = "Hack Nerd Font Mono, Bold Italic"
+# style = "Bold Italic"

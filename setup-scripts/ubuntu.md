@@ -10,7 +10,7 @@ sudo apt upgrade
 ```bash
 sudo apt-get install -y curl wget make
 sudo apt-get install -y gcc cmake
-sudo apt-get install -y neofetch
+sudo apt-get install -y htop neofetch
 ```
 
 ### git
@@ -38,6 +38,7 @@ reboot
 ### oh-my-zsh
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
 ## Dev
@@ -62,7 +63,7 @@ sudo apt-get install default-jdk -y
 
 ### pyenv
 ```bash
-sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
+sudo apt-get -y install make build-essential libssl-dev zlib1g-dev \
     libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 curl https://pyenv.run | bash
@@ -105,8 +106,6 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
 
-
-
 ## Shell
 ### dotfiles
 ```bash
@@ -116,7 +115,7 @@ git clone https://www.github.com/jimcaine/dotfiles ~/.dotfiles
 ### neovim
 Installing from snap store to get more up to date version than apt
 ```bash
-sudo snap install -y neovim
+sudo snap install nvim --classic
 
 mkdir -p ~/.config
 rm -rf ~/.config/nvim
@@ -128,6 +127,11 @@ cp -r ~/.dotfiles/nvim ~/.config/nvim
 ### tmux
 ```bash
 sudo apt get install -y tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+mkdir -p ~/.config
+rm -rf ~/.config/tmux
+cp -r ~/.dotfiles/tmux ~/.config/tmux
 ```
 
 ### alacritty
@@ -169,7 +173,7 @@ cd
 ### gnome tweaks
 ```bash
 sudo add-apt-repository universe
-sudo apt install -y gnome-tweak-tool
+sudo apt install -y gnome-tweaks
 ```
 
 ### gnome keyboard remappings
@@ -182,7 +186,7 @@ gsettings set org.gnome.desktop.peripherals.keyboard delay 226
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
 
 # window title bar
-gsettings set org.gnome.desktop.wm.preferences.button-layout "['appmenu:minmize,maximize,close']"
+gsettings set org.gnome.desktop.wm.preferences button-layout "['appmenu:minmize,maximize,close']"
 
 # swap ctrl and super keys
 gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swap_lwin_lctl']"
@@ -201,18 +205,20 @@ gsettings set org.gnome.shell.keybindings toggle-application-view "['<Primary>sp
 
 ### gnome extensions
 ```bash
-sudo snap install -y gnome-extensions-app
+sudo apt install -y gnome-extensions-app
 
 pip3 install --upgrade gnome-extensions-cli
 
 gext install 307 # https://extensions.gnome.org/extension/307/dash-to-dock/
-gettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
-gettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
-gettings set org.gnome.shell.extensions.dash-to-dock background-color "rgb(119,118,123)"
-gettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
-gettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.35
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
+gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
+gsettings set org.gnome.shell.extensions.dash-to-dock background-color "rgb(119,118,123)"
+gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
+gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.35
 
 gext install 517 # https://extensions.gnome.org/extension/517/caffeine/
+gsettings set org.gnome.shell.extensions.caffeine show-indicator "always"
+
 gext install 615 # https://extensions.gnome.org/extension/615/appindicator-support/
 gext install 1460 # https://extensions.gnome.org/extension/1460/vitals/
 gext install 19 # https://extensions.gnome.org/extension/19/user-themes/

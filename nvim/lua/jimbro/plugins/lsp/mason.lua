@@ -23,12 +23,18 @@ return {
       ensure_installed = {
         "lua_ls",
         "pyright",
+        "tsserver",
       },
       automatic_installation = true,
     })
 
     mason_tool_installer.setup({
       ensure_installed = {
+        "eslint",
+        "prettier",
+        "stylelint",
+        "stylua",
+        "autopep8",
       },
     })
   end,

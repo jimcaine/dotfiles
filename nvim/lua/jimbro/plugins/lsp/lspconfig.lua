@@ -72,6 +72,16 @@ return {
       on_attach = on_attach,
     })
 
+    lspconfig.tsserver.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = {
+        "typescript",
+        "typescriptreact",
+      },
+      root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
+    })
+
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,

@@ -1,15 +1,10 @@
-# Setup: Ubuntu
+# Setup: Fedora (v39)
 
 ## update package manager
 ```bash
 sudo dnf update
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
-
-<!-- ## install snap package manager -->
-<!-- ```bash -->
-<!-- sudo apt install snapd -->
-<!-- ``` -->
 
 ## zshell
 ```bash
@@ -19,25 +14,42 @@ chsh -s $(which zsh)
 
 ### LOGOUT ###
 
+## essentials
+```bash
+sudo dnf install -y curl wget make gcc cmake neofetch htop \
+    ruby gcc-c++ tldr
+```
+
+## nerd fonts
+```bash
+sudo mkdir -p /usr/share/fonts/meslo-lgs-nf
+cd ~/Downloads
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+mv Meslo* ~/Downloads /usr/share/fonts/meslo-lgs-nf/
+cd
+sudo fc-cache -fv
+```
+
+## oh-my-zsh
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## powerlevel10k
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+sed '/ZSH_THEME=/d' ~/.zshrc
+echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
+```
 
 ## git
 ```bash
 sudo apt-get install -y git
 git config --global user.email ""
 git config --global user.name $(whoami)
-```
-
-## utils
-```bash
-sudo apt-get install -y curl wget make
-sudo apt-get install -y gcc cmake
-sudo apt-get install -y neofetch
-```
-
-## ruby
-Less for rails, more for zsh
-```bash
-sudo apt-get install -y ruby
 ```
 
 ## rust
@@ -50,9 +62,13 @@ rustup update stable
 
 ## pyenv
 ```bash
-sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
-    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+sudo dnf install -y "@Development Tools" gcc make patch zlib-devel \
+	bzip2 bzip2-devel readline-devel sqlite sqlite-devel \
+	openssl-devel xz xz-devel libffi-devel findutils tk-devel
+
+sudo apt-get update; sudo apt-get install build-essential zlib1g-dev \
+    libbz2-dev llvm \
+    libncursesw5-dev tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 curl https://pyenv.run | bash
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
@@ -90,6 +106,11 @@ cp -r ~/.dotfiles/nvim ~/.config/nvim
 sudo apt get install -y tmux
 ```
 
+## tmuxinator
+```bash
+sudo gem install tmuxinator
+```
+
 ## alacritty
 First, make sure that you installed Rust above!
 ```bash
@@ -111,24 +132,6 @@ echo 'fpath+=${ZDOTDIR:-~}/.zsh_functions' >> ${ZDOTDIR:-~}/.zshrc
 cp extra/completions/_alacritty ${ZDOTDIR:-~}/.zsh_functions/_alacritty
 
 cp -r ~/.dotfiles/alacritty ~/.config/alacritty
-```
-
-
-## oh-my-zsh
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-## nerd fonts
-```bash
-mkdir -p ~/.fonts
-cd ~/.fonts
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
-sudo fc-cache -fv
-cd
 ```
 
 ## docker
@@ -254,6 +257,15 @@ git clone https://github.com/EliverLara/firefox-nordic-theme && cd firefox-nordi
 cd ..
 rm -rf ./scripts/install.sh
 # https://github.com/EliverLara/firefox-nordic-theme
+```
+
+# apps
+## thinkorswim
+```bash
+sudo dnf install -y https://cdn.azul.com/zulu/bin/zulu-repo-1.0.0-1.noarch.rpm
+sudo dnf install zulu11-jdk
+sudo alternatives --config java
+
 ```
 
 # aliases

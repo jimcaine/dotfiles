@@ -18,3 +18,4 @@ wget https://imgproxy.nanxiongnandi.com/RIWcChkRnFWjITkHkSvkPGguacUuuPfs37hfVaU4
 wget https://imgproxy.nanxiongnandi.com/HfeMQUWw6Yefaid3ORpDOBRt9nkL60LtLk8Q0wtaCmk/w:3840/q:100/att:1/aHR0cHM6Ly9pbWcu/bmFueGlvbmduYW5k/aS5jb20vMjAyMzEw/L0tvZGlha0FsYXNr/YS5qcGc.jpg
 wget https://imgproxy.nanxiongnandi.com/WYJYZaecqZX1k0wC4wp_Gl_eZxyui5UcltSUM2LMZXU/w:3840/q:100/att:1/aHR0cHM6Ly9pbWcu/bmFueGlvbmduYW5k/aS5jb20vMjAyMzEw/L0dlbnRvb0p1bXAu/anBn.jpg
 wget https://imgproxy.nanxiongnandi.com/gEgJUgd3s9PxlVR-DcaInu94HXG-72ne3_LgSSgy-fc/w:3840/q:100/att:1/aHR0cHM6Ly9pbWcu/bmFueGlvbmduYW5k/aS5jb20vMjAyMzEw/L0dyaXp6bHlGYWxs/cy5qcGc.jpg
+wget https://imgproxy.nanxiongnandi.com/MsV1Lcz0jc3qFv5tDMNzyciqI9BdNWaNNYrQEc7qJxc/w:3840/q:100/att:1/aHR0cHM6Ly9pbWcu/bmFueGlvbmduYW5k/aS5jb20vMjAyNDA2/L0NoZXN0bnV0QmVl/RWF0ZXIuanBn.jpg

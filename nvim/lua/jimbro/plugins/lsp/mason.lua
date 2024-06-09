@@ -21,8 +21,11 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
+        "gopls",
+        "html",
         "lua_ls",
         "pyright",
+        "rust_analyzer",
         "tsserver",
       },
       automatic_installation = true,
@@ -30,11 +33,12 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
+        "autopep8",
         "eslint",
         "prettier",
         "stylelint",
         "stylua",
-        "autopep8",
+        "yapf",
       },
     })
   end,

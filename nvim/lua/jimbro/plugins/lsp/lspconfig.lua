@@ -8,7 +8,7 @@ return {
   config = function()
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local keymap = vim.keymap -- for conciseness
+    local keymap = vim.keymap
 
     local opts = { noremap = true, silent = true }
     local on_attach = function(client, bufnr)
@@ -53,6 +53,9 @@ return {
 
       opts.desc = "Restart LSP"
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+      opts.desc = "Format buffer"
+      keymap.set("n", "<leader>fm", vim.lsp.buf.formatting, opts) -- format buffer
     end
 
     -- used to enable autocompletion (assign to every lsp server config)
@@ -66,12 +69,40 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- configure python server
+    -- python language server
     lspconfig["pyright"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
+    -- go language server
+    lspconfig["gopls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = { "gopls", "serve" },
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+    })
+
+    -- html language server
+    lspconfig.html.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    -- rust language server
+    lspconfig.rust_analyzer.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    -- typescript language server
     lspconfig.tsserver.setup({
       on_attach = on_attach,
       capabilities = capabilities,
@@ -82,7 +113,7 @@ return {
       root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
     })
 
-    -- configure lua server (with special settings)
+    -- lua language server
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,

@@ -268,6 +268,12 @@ sudo alternatives --config java
 
 ```
 
+# pgadmin
+```
+sudo rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-fedora-repo-2-1.noarch.rpm
+sudo yum install pgadmin4-desktop
+```
+
 # aliases
 ```bash
 alias watch_dconf='dconf watch /'

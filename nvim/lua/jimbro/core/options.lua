@@ -13,3 +13,5 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "no"
 vim.opt.isfname:append("@-@")
 vim.opt.timeoutlen = 200
+vim.opt.termguicolors = true
+

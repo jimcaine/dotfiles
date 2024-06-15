@@ -265,7 +265,6 @@ rm -rf ./scripts/install.sh
 sudo dnf install -y https://cdn.azul.com/zulu/bin/zulu-repo-1.0.0-1.noarch.rpm
 sudo dnf install zulu11-jdk
 sudo alternatives --config java
-
 ```
 
 ## pgadmin
@@ -279,6 +278,12 @@ sudo yum install pgadmin4-desktop
 sudo dnf install -y dnf-plugins-core distribution-gpg-keys
 sudo dnf copr enable taw/joplin
 sudo dnf install -y joplin
+```
+
+## hyprland
+```bash
+sudo dnf copr enable solopasha/hyprland
+sudo dnf install -y hyprland
 ```
 
 # aliases

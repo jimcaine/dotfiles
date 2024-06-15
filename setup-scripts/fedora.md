@@ -268,10 +268,17 @@ sudo alternatives --config java
 
 ```
 
-# pgadmin
-```
+## pgadmin
+```bash
 sudo rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-fedora-repo-2-1.noarch.rpm
 sudo yum install pgadmin4-desktop
+```
+
+## joplin
+```bash
+sudo dnf install -y dnf-plugins-core distribution-gpg-keys
+sudo dnf copr enable taw/joplin
+sudo dnf install -y joplin
 ```
 
 # aliases

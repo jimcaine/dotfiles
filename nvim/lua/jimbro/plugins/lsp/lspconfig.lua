@@ -55,7 +55,7 @@ return {
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
       opts.desc = "Format buffer"
-      keymap.set("n", "<leader>fm", vim.lsp.buf.formatting, opts) -- format buffer
+      keymap.set("n", "<leader>fm", vim.lsp.buf.format, opts) -- format buffer
     end
 
     -- used to enable autocompletion (assign to every lsp server config)

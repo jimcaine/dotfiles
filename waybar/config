@@ -1,1 +1,132 @@
-/home/jimbro/.config/waybar/themes/jimbro/config
+{
+
+  "layer": "top",
+  "position": "top",
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "height": 24,
+  "spacing": 2,
+
+  "modules-left": [
+    "custom/appmenu",
+    "custom/spotify",
+    "custom/webull",
+    "custom/gpt",
+    "custom/gmail",
+    "custom/joplin",
+    "custom/postman",
+    "custom/figma",
+    "hyprland/window",
+  ],
+
+  "modules-center": ["hyprland/workspaces"],
+
+  "modules-right": [
+    "pulseaudio",
+    "bluetooth",
+    "custom/weather",
+    "custom/nightmode",
+    "clock",
+    "custom/logout",
+  ],
+
+  "custom/appmenu": {
+    "format": " ",
+    "on-click": "rofi -show drun",
+  },
+
+  "custom/spotify": {
+    "format": "\uf1bc",
+    "on-click": "flatpak run com.spotify.Client",
+  },
+
+  "custom/webull": {
+    "format": "\uf201",
+    "on-click": "/usr/local/WebullDesktop/WebullDesktop &",
+  },
+
+  "custom/gpt": {
+    "format": "\uf6ed",
+    "on-click": "brave-browser --app=https://chatgpt.com",
+  },
+
+  "custom/gmail": {
+    "format": "\uf0e0",
+    "on-click": "brave-browser --app=http://gmail.com",
+  },
+
+  "custom/joplin": {
+    "format": "\uf10d",
+    "on-click": "joplin-desktop &",
+  },
+
+  "custom/postman": {
+    "format": "\uf7e1",
+    "on-click": "postman &",
+  },
+
+  "custom/figma": {
+    "format": "\uf5ad",
+    "on-click": "brave-browser --app=http://figma.com",
+  },
+
+  "hyprland/window": {
+    "format": "\uf054 {}",
+    "separate-outputs": true
+  },
+
+  "hyprland/workspaces": {
+    "format": "{name}"
+  },
+
+  "bluetooth": {
+    // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+    "format": " {status} | ",
+    "format-disabled": "| ",
+    "format-connected": " {num_connections} | ",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "blueman-manager",
+  },
+
+  "pulseaudio": {
+    "format": "{volume}% {icon} | ",
+    "format-bluetooth": "{volume}% {icon} | ",
+    "format-muted": " | ",
+    "format-icons": {
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+
+  "custom/weather": {
+    "format": "{} | ",
+    "tooltip": true,
+    "on-click": "gnome-weather",
+    "interval": 3600,
+    "exec": "python ~/.config/waybar/scripts/waybar-wttr.py",
+    "return-type": "json"
+  },
+
+  "custom/nightmode": {
+    "format": "\uf0eb | ",
+    "on-click": "hyprshade on blue-light-filter",
+    "on-click-right": "hyprshade off",
+  },
+
+  "clock": {
+    "timezone": "America/Chicago",
+    "tooltip-format": "<big>{%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%m-%d %H:%M} | ",
+    "on-click": "gnome-clocks",
+  },
+
+  "custom/logout": {
+    "format": " ",
+    "on-click": "wlogout",
+  },
+}

@@ -27,6 +27,8 @@ return {
         "pyright",
         "rust_analyzer",
         "tsserver",
+        "cssls",
+        "tailwindcss",
       },
       automatic_installation = true,
     })

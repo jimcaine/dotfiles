@@ -133,5 +133,28 @@ return {
         },
       },
     })
+
+    -- css language server
+    lspconfig.cssls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = {
+        "css",
+        "scss",
+        "less",
+      },
+    })
+
+    -- tailwindcss language server
+    lspconfig.tailwindcss.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = {
+        "html",
+        "javascriptreact",
+        "typescriptreact",
+        "templ",
+      },
+    })
   end,
 }

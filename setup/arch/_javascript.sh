@@ -1,2 +1,4 @@
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-nvm install node
+. ~/.config/nvm/nvm.sh
+nvm install 22
+nvm use 22

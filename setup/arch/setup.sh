@@ -1,6 +1,7 @@
 # Arch Linux Installer
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
-echo "Executing setup.sh from $SCRIPT_DIR"
+echo "Executing setup.sh from $SCRIPT_DIR in 5 seconds..."
+sleep 5
 
 # update sys
 sudo pacman-key init
@@ -18,7 +19,6 @@ sudo pacman -Syu --noconfirm \
   htop \
   ruby \
   unzip \
-  zsh \
   neofetch \
   neovim \
   tldr
@@ -26,8 +26,16 @@ sudo pacman -Syu --noconfirm \
 # install yay
 bash $SCRIPT_DIR/_aur.sh
 
+# install zsh
+bash $SCRIPT_DIR/_zsh.sh
+
 # install tmux plugins
 bash $SCRIPT_DIR/_tmux.sh
 
 # install dotfiles
 bash $SCRIPT_DIR/_dotfiles.sh
+
+# reboot
+echo "Rebooting in 5 seconds..."
+sleep 5
+sudo reboot

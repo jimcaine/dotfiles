@@ -12,3 +12,4 @@ vim.keymap.set("n", "<leader>l", "<C-w><C-l>")
 
 -- netrw
 vim.keymap.set("n", "<leader>ee", "<cmd>Ex<cr>", { desc = "Netrw file nav" } )
+vim.keymap.set("n", "<leader>md", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown preview" } )

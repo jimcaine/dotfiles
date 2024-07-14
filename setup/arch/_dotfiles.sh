@@ -21,3 +21,8 @@ ln -s ~/.dotfiles/dotfiles/rofi ~/.config/rofi
 
 rm -rf ~/.config/wlogout
 ln -s ~/.dotfiles/dotfiles/wlogout ~/.config/wlogout
+
+rm -rf ~/.zshrc-modules
+rm ~/.zshrc
+ln -s ~/.dotfiles/dotfiles/zshrc/.zshrc-modules ~/.zshrc-modules
+ln -s ~/.dotfiles/dotfiles/zshrc/.zshrc ~/.zshrc

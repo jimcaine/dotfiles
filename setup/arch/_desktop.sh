@@ -24,4 +24,5 @@ sudo yay -Syu --noconfirm \
   xfce4-settings \
   dracula-gtk-theme \
   dracula-icons-git \
-  xdg-desktop-portal-hyprland
+  xdg-desktop-portal-hyprland \
+  python-pywal

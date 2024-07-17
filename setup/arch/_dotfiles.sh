@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 mkdir -p $HOME/.config
 git clone https://github.com/jimcaine/dotfiles.git $HOME/.dotfiles
 

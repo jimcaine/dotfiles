@@ -2,28 +2,31 @@
 mkdir -p $HOME/.config
 git clone https://github.com/jimcaine/dotfiles.git $HOME/.dotfiles
 
-rm -f ~/.tmux.conf
-ln -s ~/.dotfiles/dotfiles/tmux/tmux.conf ~/.tmux.conf
+rm -f $HOME/.tmux.conf
+ln -s $HOME/.dotfiles/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 
-rm -rf ~/.config/nvim
-ln -s ~/.dotfiles/dotfiles/nvim ~/.config/nvim
+rm -rf $HOME/.config/nvim
+ln -s $HOME/.dotfiles/dotfiles/nvim $HOME/.config/nvim
 
-rm -rf ~/.config/hypr
-ln -s ~/.dotfiles/dotfiles/hypr ~/.config/hypr
+rm -rf $HOME/.config/oh-my-posh
+ln -s $HOME/.dotfiles/dotfiles/oh-my-posh $HOME/.config/oh-my-posh
 
-rm -rf ~/.config/kitty
-ln -s ~/.dotfiles/dotfiles/kitty ~/.config/kitty
+rm -rf $HOME/.config/hypr
+ln -s $HOME/.dotfiles/dotfiles/hypr $HOME/.config/hypr
 
-rm -rf ~/.config/waybar
-ln -s ~/.dotfiles/dotfiles/waybar ~/.config/waybar
+rm -rf $HOME/.config/kitty
+ln -s $HOME/.dotfiles/dotfiles/kitty $HOME/.config/kitty
 
-rm -rf ~/.config/rofi
-ln -s ~/.dotfiles/dotfiles/rofi ~/.config/rofi
+rm -rf $HOME/.config/waybar
+ln -s $HOME/.dotfiles/dotfiles/waybar $HOME/.config/waybar
 
-rm -rf ~/.config/wlogout
-ln -s ~/.dotfiles/dotfiles/wlogout ~/.config/wlogout
+rm -rf $HOME/.config/rofi
+ln -s $HOME/.dotfiles/dotfiles/rofi $HOME/.config/rofi
 
-rm -rf ~/.zshrc-modules
-rm ~/.zshrc
-ln -s ~/.dotfiles/dotfiles/zshrc/.zshrc-modules ~/.zshrc-modules
-ln -s ~/.dotfiles/dotfiles/zshrc/.zshrc ~/.zshrc
+rm -rf $HOME/.config/wlogout
+ln -s $HOME/.dotfiles/dotfiles/wlogout $HOME/.config/wlogout
+
+rm -rf $HOME/.zshrc-modules
+rm $HOME/.zshrc
+ln -s $HOME/.dotfiles/dotfiles/zshrc/.zshrc-modules $HOME/.zshrc-modules
+ln -s $HOME/.dotfiles/dotfiles/zshrc/.zshrc $HOME/.zshrc

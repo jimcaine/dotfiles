@@ -17,4 +17,6 @@ sudo pacman -Syu --noconfirm \
   man-db \
   tldr \
   zsh \
-  tmux
+  tmux \
+  fzf \
+  amd-ucode

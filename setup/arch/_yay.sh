@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 sudo yay -Syu --noconfirm \
+  kitty \
+  oh-my-posh \
   hyprland \
   waybar \
-  kitty \
   swaybg \
   swaylock-effects \
   rofi \
@@ -27,4 +28,6 @@ sudo yay -Syu --noconfirm \
   dracula-icons-git \
   xdg-desktop-portal-hyprland \
   python-pywal \
-  oh-my-posh
+  hyprshade \
+  kclock \
+  kweather

@@ -102,7 +102,7 @@
       "format-charging": "  {capacity}% | ",
       "format-plugged": " {capacity}% |",
       "format-alt": "{time} {icon} | ",
-      "format-full": " {capacity}% | ",
+      "format-full": "  {capacity}% | ",
 	},
 
   "pulseaudio": {
@@ -120,7 +120,7 @@
   "custom/weather": {
     "format": "{} | ",
     "tooltip": true,
-    "on-click": "gnome-weather",
+    "on-click": "kweather",
     "interval": 3600,
     "exec": "python ~/.config/waybar/scripts/waybar-wttr.py",
     "return-type": "json"
@@ -136,14 +136,8 @@
     "timezone": "America/Chicago",
     "tooltip-format": "<big>{%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "{:%m-%d %H:%M} | ",
-    "on-click": "gnome-clocks",
+    "on-click": "kclock",
   },
-
-	"clock": {
-		"format": " {:%H:%M}",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        	"format-alt": "{:%Y-%m-%d}"
-	},
 
   "custom/logout": {
     "format": " ",

@@ -27,6 +27,7 @@
     "bluetooth",
     "custom/weather",
     "custom/nightmode",
+    "battery",
     "clock",
     "custom/logout",
   ],
@@ -91,6 +92,19 @@
     "on-click": "blueman-manager",
   },
 
+
+	"battery": {
+      "states": {
+            "warning": 15,
+            "critical": 15
+      },
+      "format": "{icon} {capacity}% | ",
+      "format-charging": "  {capacity}% | ",
+      "format-plugged": " {capacity}% |",
+      "format-alt": "{time} {icon} | ",
+      "format-full": " {capacity}% | ",
+	},
+
   "pulseaudio": {
     "format": "{volume}% {icon} | ",
     "format-bluetooth": "{volume}% {icon} | ",
@@ -124,6 +138,12 @@
     "format": "{:%m-%d %H:%M} | ",
     "on-click": "gnome-clocks",
   },
+
+	"clock": {
+		"format": " {:%H:%M}",
+        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        	"format-alt": "{:%Y-%m-%d}"
+	},
 
   "custom/logout": {
     "format": " ",

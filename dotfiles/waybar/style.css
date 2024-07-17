@@ -1,8 +1,8 @@
-@import '../../.cache/wal/colors-waybar.css';
+/* @import '../../.cache/wal/colors-waybar.css'; */
 
 @define-color font-primary #ffffff;
-@define-color font-secondary @color2;
-@define-color highlight @color1;
+@define-color font-secondary #9f8cd7;
+@define-color highlight #1c800a;
 @define-color urgent #eb4d4b;
 @define-color background rgba(43, 48, 59, 0.5);
 

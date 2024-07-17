@@ -14,3 +14,6 @@ configuration {
 }
 
 @import "~/.cache/wal/colors-rofi-light.rasi"
+//@theme "/home/jimbro/.local/share/rofi/themes/launchpad.rasi"
+//@theme "/home/jimbro/.local/share/rofi/themes/windows11-list-dark.rasi"
+@theme "/home/jimbro/.local/share/rofi/themes/launchpad.rasi"

@@ -1,5 +1,5 @@
-mkdir -p ~/.wallpapers
-cd ~/.wallpapers
+mkdir -p ~/.local/wallpapers
+cd ~/.local/wallpapers
 
 wget -A jpg https://github.com/makccr/wallpapers/raw/master/wallpapers/animals/anna-wangler-_GqwoiT7QY8-unsplash.jpg
 wget -A jpg https://github.com/makccr/wallpapers/blob/master/wallpapers/landscape/GENERAL-black-boat-sea.jpg

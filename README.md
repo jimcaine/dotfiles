@@ -1,8 +1,10 @@
 # dotfiles
-Collection of configuration files and install scripts to get new environments up and going fast!
+An opionated collection of configuration files and install scripts. I use arch by the way.
 
 
 ## Configurations (dotfiles)
+Configuration files stored in the dotfiles directory and available for usage post-setup.
+
 #### Terminal
 * kitty
 * alacritty
@@ -25,6 +27,7 @@ Collection of configuration files and install scripts to get new environments up
 * via
 
 ## Packages
+Packages that are installed during setup by default across all relevant platforms.
 
 ## Web
 * curl
@@ -93,7 +96,3 @@ Collection of configuration files and install scripts to get new environments up
 
 #### Arch
 * yay
-
-sudo pacman -Syu --noconfirm
-
-

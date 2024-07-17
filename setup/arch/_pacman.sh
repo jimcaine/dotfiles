@@ -18,5 +18,6 @@ sudo pacman -Syu --noconfirm \
   tldr \
   zsh \
   tmux \
+  github-cli \
   fzf \
   amd-ucode

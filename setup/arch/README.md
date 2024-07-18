@@ -2,6 +2,7 @@
 ### Installation
 ```bash
 iwctl ...
+sudo vim /etc/pacman.conf
 archinstall
 ```
 

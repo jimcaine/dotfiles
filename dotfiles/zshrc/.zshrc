@@ -7,4 +7,4 @@ source $HOME/.zshrc-modules/.zshrc.oh-my-posh
 source $HOME/.zshrc-modules/.zshrc.nvm
 source $HOME/.zshrc-modules/.zshrc.pyenv
 source $HOME/.zshrc-modules/.zshrc.tmuxinator
-
+source $HOME/.zshrc-modules/.zshrc.rust

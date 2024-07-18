@@ -19,5 +19,6 @@ bash ~/.dotfiles/setup/arch/setup.sh
 ```
 
 ### Next Steps
-1. Login to Git
-2. Login to Google (or cloud provider)
+#### Login To Github
+#### Authenticate Copilot
+#### Login To Cloud Providers

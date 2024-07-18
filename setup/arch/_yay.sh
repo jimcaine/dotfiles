@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-sudo yay -Syu --noconfirm \
+yay -Syu --noconfirm \
   kitty \
   oh-my-posh \
   hyprland \
@@ -30,4 +30,6 @@ sudo yay -Syu --noconfirm \
   python-pywal \
   hyprshade \
   kclock \
-  kweather
+  kweather \
+  spotify \
+  webull-desktop

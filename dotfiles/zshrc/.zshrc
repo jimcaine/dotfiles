@@ -8,3 +8,4 @@ source $HOME/.zshrc-modules/.zshrc.nvm
 source $HOME/.zshrc-modules/.zshrc.pyenv
 source $HOME/.zshrc-modules/.zshrc.tmuxinator
 source $HOME/.zshrc-modules/.zshrc.rust
+source $HOME/.zshrc-modules/.zshrc.browser-apps

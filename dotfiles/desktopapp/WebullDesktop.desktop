@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Finance;
+Name=Webull Desktop
+Icon=WebullDesktop
+Exec=env LD_LIBRARY_PATH=/opt/WebullDesktop /usr/bin/WebullDesktop
+Comment="Webull Desktop"
+Terminal=false
+Type=Application
+Version=7.10.0

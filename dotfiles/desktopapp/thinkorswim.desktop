@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=thinkorswim
+GenericName=Trading platform
+Comment=Trading platform
+Icon=thinkorswim
+Exec=env app_java_home=/usr/lib/jvm/zulu-17 /home/jimbro/thinkorswim/thinkorswim
+Path=/home/jimbro/thinkorswim
+Terminal=false
+StartupNotify=true
+Categories=Java;

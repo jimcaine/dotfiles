@@ -20,4 +20,5 @@ sudo pacman -Syu --noconfirm \
   tmux \
   github-cli \
   fzf \
+  docker \
   amd-ucode

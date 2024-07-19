@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 alias espn="chromium --app=https://espn.com"
 alias trello="chromium --app=https://trello.com"
 alias gpt="chromium --app=https://chatgpt.com"

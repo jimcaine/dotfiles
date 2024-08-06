@@ -13,6 +13,7 @@ return {
     local opts = { noremap = true, silent = true }
     local on_attach = function(client, bufnr)
       opts.buffer = bufnr
+      local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
 
       -- set keybinds
       opts.desc = "Show LSP references"
@@ -55,7 +56,11 @@ return {
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
       opts.desc = "Format buffer"
-      keymap.set("n", "<leader>fm", vim.lsp.buf.format, opts) -- format buffer
+      if filetype == "python" then
+        keymap.set("n", "<leader>fm", "<cmd>Autopep8<cr>", opts) -- format buffer
+      else
+        keymap.set("n", "<leader>fm", vim.lsp.buf.format, opts) -- format buffer
+      end
     end
 
     -- used to enable autocompletion (assign to every lsp server config)

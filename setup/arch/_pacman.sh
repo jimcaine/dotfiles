@@ -21,4 +21,5 @@ sudo pacman -Syu --noconfirm \
   github-cli \
   fzf \
   docker \
+  xclip \
   amd-ucode

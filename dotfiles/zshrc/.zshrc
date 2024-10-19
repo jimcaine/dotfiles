@@ -14,5 +14,6 @@ source $HOME/.zshrc-modules/.zshrc.tree
 source $HOME/.zshrc-modules/.zshrc.tailwindcss
 source $HOME/.zshrc-modules/.zshrc.tmuxinator
 source $HOME/.zshrc-modules/.zshrc.spotify
+source $HOME/.zshrc-modules/.zshrc.wallpapers
 
 . "$HOME/.cargo/env"

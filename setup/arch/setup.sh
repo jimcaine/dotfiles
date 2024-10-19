@@ -27,6 +27,11 @@ bash $ARCH_MODULES/_tailwindcss.sh
 # symlink dot files
 bash $ARCH_MODULES/_dotfiles.sh
 
+# configuration
+bash $COMMON_MODULES/_git.sh
+pyenv install 3.11
+pyenv global 3.11
+
 # update system to use zsh on reboot
 chsh -s $(which zsh)
 

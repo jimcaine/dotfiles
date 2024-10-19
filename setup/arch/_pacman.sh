@@ -22,4 +22,6 @@ sudo pacman -Syu --noconfirm \
   fzf \
   docker \
   xclip \
-  amd-ucode
+  amd-ucode \
+  jq \
+  yq

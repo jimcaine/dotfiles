@@ -9,4 +9,6 @@ sudo dnf install -y \
   ruby \
   nvim \
   tmux \
-  util-linux-user
+  util-linux-user \
+  jq \
+  yq

@@ -5,6 +5,7 @@ brew install (
   gh,
   lazygit,
   jq,
+  yq,
   neofetch,
   tmux,
   tmuxinator,

@@ -249,6 +249,43 @@ yay -Syu --noconfirm \
 ```
 
 
+### Configure Dotfiles
+```bash
+mkdir -p $HOME/.config
+
+rm -f $HOME/.tmux.conf || true
+cp $HOME/.dotfiles/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
+
+rm -rf $HOME/.config/nvim || true
+cp -r $HOME/.dotfiles/dotfiles/nvim $HOME/.config/nvim
+
+rm -rf $HOME/.config/oh-my-posh || true
+cp -r $HOME/.dotfiles/dotfiles/oh-my-posh $HOME/.config/oh-my-posh
+
+rm -rf $HOME/.config/hypr || true
+cp -r $HOME/.dotfiles/dotfiles/hypr $HOME/.config/hypr
+
+rm -rf $HOME/.config/kitty || true
+cp -r $HOME/.dotfiles/dotfiles/kitty $HOME/.config/kitty
+
+rm -rf $HOME/.config/waybar || true
+cp -r $HOME/.dotfiles/dotfiles/waybar $HOME/.config/waybar
+
+rm -rf $HOME/.config/rofi || true
+cp -r $HOME/.dotfiles/dotfiles/rofi $HOME/.config/rofi
+
+rm -rf $HOME/.config/wlogout || true
+cp -r $HOME/.dotfiles/dotfiles/wlogout $HOME/.config/wlogout
+```
+
+
+### Star Hyprland
+```bash
+reboot
+exec Hyprland
+```
+
+
 ### Configure Github
 * Sign into github.com & add public key to ssh keys.
 * Update remote in dotfiles to use ssh.
@@ -264,10 +301,27 @@ gh extension install github/gh-copilot
 ```
 
 
-#### Google Cloud
+### Google Cloud
 Install:
 ```bash
+mkdir -p $HOME/.local/bin
+cd $HOME/.local/bin
 curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
 tar -xf google-cloud-cli-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh
+rm google-cloud-cli-linux-x86_64.tar.gz
+cd -
+```
+
+```bash
+gcloud auth login
+gcloud config set project <PROJECT_ID>
+```
+
+
+### Download Wallpapers
+```bash
+mkdir -p ~/.local/share
+gsutil cp -r gs://elnoche/sys/.wallpapers ~/.local/share
+mv ~/.local/share/.wallpapers ~/.local/share/wallpapers
 ```

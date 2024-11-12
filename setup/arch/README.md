@@ -100,9 +100,32 @@ sudo pacman -Syu
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
 sudo pacman -Syu --noconfirm git curl wget base-devel rustup go ruby \
-  gcc g++ make cmake unzip neofetch htop vim neovim man-db tldr \
-  zsh tmux github-cli fzf docker xclip amd-ucode jq yq lazygit
+  gcc g++ make cmake zsh unzip neofetch htop vim neovim man-db tldr \
+  ripgrep tmux github-cli fzf docker xclip amd-ucode jq yq lazygit \
+  cronie ffmpeg imagemagick mpv linux-firmware libva-utils
 ```
+
+##### AMD Ryzen
+1. Install Hardware Video Decoding for AMD GPUs
+You can improve video playback performance by enabling hardware acceleration for video decoding. For your AMD GPU, you can use the mesa and vdpau packages.
+
+* Install mesa (for Vulkan and OpenGL).
+* Install vdpau for video decoding.
+* Install ffmpeg with hardware acceleration support.
+
+2. Install the libva and vdpau Drivers for VAAPI (Video Acceleration API)
+For AMD GPUs, you may want to ensure that VAAPI is supported, as it allows video playback applications to leverage hardware acceleration.
+
+```bash
+sudo pacman -Syu --noconfirm mesa vdpauinfo libva-mesa-driver
+sudo pacman -Syu libva-mesa-driver
+```
+
+Check if hardware acceleration is working:
+```bash
+vainfo
+```
+
 
 ```bash
 chsh -s /usr/bin/zsh

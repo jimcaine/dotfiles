@@ -1,19 +1,89 @@
+# copy from: https://github.com/ericmurphyxyz/dotfiles
+# url: https://github.com/ericmurphyxyz/dotfiles/blob/e1a7a2a05089b7c0dffd43616a2654d4db9e6aa5/.config/rofi/config.rasi
 configuration {
-  modes: [ combi ];
-  combi-modes: [ window, drun, run ];
-	font: "mono 10";
-	show-icons: true;
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  drun-display-format: "{name}";
+  font: "JetBrainsMono Nerd Font Medium 10";
+  modi: "window,run,drun";
+  
+  // enabling the icons
+  show-icons: true;
+  icon-theme: "Papirus";
 }
 
-@import "~/.cache/wal/colors-rofi-light.rasi"
-//@theme "/home/jimbro/.local/share/rofi/themes/launchpad.rasi"
-//@theme "/home/jimbro/.local/share/rofi/themes/windows11-list-dark.rasi"
-@theme "/home/jimbro/.local/share/rofi/themes/launchpad.rasi"
+@theme "/dev/null"
+
+* {
+  bg: #1e1e2e66;
+  bg-alt: #585b7066;
+  bg-selected: #31324466;
+
+  fg: #cdd6f4;
+  fg-alt: #7f849c;
+
+  
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 30%;
+  background-color: @bg;
+}
+
+element {
+  padding: 8 12;
+  background-color: transparent;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: @fg;
+  background-color: @bg-selected;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 14;
+  padding: 0 10 0 0;
+  background-color: transparent;
+}
+
+entry {
+  padding: 12;
+  background-color: @bg-alt;
+  text-color: @fg;
+}
+
+inputbar {
+  children: [prompt, entry];
+  background-color: @bg;
+}
+
+listview {
+  background-color: @bg;
+  columns: 1;
+  lines: 10;
+}
+
+mainbox {
+  children: [inputbar, listview];
+  background-color: @bg;
+}
+
+prompt {
+  enabled: true;
+  padding: 12 0 0 12;
+  background-color: @bg-alt;
+  text-color: @fg;
+}
+
+/* vim: ft=sass

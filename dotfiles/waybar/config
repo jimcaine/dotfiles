@@ -33,43 +33,8 @@
   ],
 
   "custom/appmenu": {
-    "format": " ",
+    "format": "󰣇",
     "on-click": "rofi -show drun",
-  },
-
-  "custom/spotify": {
-    "format": "\uf1bc",
-    "on-click": "flatpak run com.spotify.Client",
-  },
-
-  "custom/webull": {
-    "format": "\uf201",
-    "on-click": "/usr/local/WebullDesktop/WebullDesktop &",
-  },
-
-  "custom/gpt": {
-    "format": "\uf6ed",
-    "on-click": "brave-browser --app=https://chatgpt.com",
-  },
-
-  "custom/gmail": {
-    "format": "\uf0e0",
-    "on-click": "brave-browser --app=http://gmail.com",
-  },
-
-  "custom/joplin": {
-    "format": "\uf10d",
-    "on-click": "joplin-desktop &",
-  },
-
-  "custom/postman": {
-    "format": "\uf7e1",
-    "on-click": "postman &",
-  },
-
-  "custom/figma": {
-    "format": "\uf5ad",
-    "on-click": "brave-browser --app=http://figma.com",
   },
 
   "hyprland/window": {
@@ -140,7 +105,7 @@
   },
 
   "custom/logout": {
-    "format": " ",
+    "format": "",
     "on-click": "wlogout",
   },
 }

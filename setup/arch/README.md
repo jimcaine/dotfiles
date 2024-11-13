@@ -196,6 +196,8 @@ git clone https://github.com/jimcaine/dotfiles.git ~/.dotfiles
 
 ### Configure rust
 ```bash
+rustup default stable
+
 echo 'source $HOME/.dotfiles/dotfiles/zsh/.zshrc-modules/.zshrc.rust' >> $HOME/.zshrc
 source $HOME/.zshrc
 ```
@@ -347,4 +349,17 @@ gcloud config set project <PROJECT_ID>
 mkdir -p ~/.local/share
 gsutil cp -r gs://elnoche/sys/.wallpapers ~/.local/share
 mv ~/.local/share/.wallpapers ~/.local/share/wallpapers
+```
+
+
+### Configure SDDM
+```bash
+sudo pacman -S sddm qt5‑graphicaleffects qt5‑quickcontrols2 qt5‑svg
+sudo systemctl enable sddm.service
+sudo systemctl enable sddm.service --now # enable and logout
+
+# themes
+wget ... # download from site
+sudo tar -xzvf sugar-candy.tar.gz
+sudo cp -r sugar-candy /usr/share/sddm/themes
 ```

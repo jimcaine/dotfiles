@@ -57,18 +57,13 @@
     "on-click": "blueman-manager",
   },
 
-
-	"battery": {
-      "states": {
-            "warning": 15,
-            "critical": 15
-      },
-      "format": "{icon} {capacity}% | ",
-      "format-charging": "  {capacity}% | ",
-      "format-plugged": " {capacity}% |",
-      "format-alt": "{time} {icon} | ",
-      "format-full": "  {capacity}% | ",
-	},
+  "battery": {
+    "format": "{capacity}% | ",
+    "format-charging": "{capacity}% ⚡ | ",
+    "format-discharging": "{capacity}% | ",
+    "polling-frequency": 30,
+    "max-length": 20
+  },
 
   "pulseaudio": {
     "format": "{volume}% {icon} | ",

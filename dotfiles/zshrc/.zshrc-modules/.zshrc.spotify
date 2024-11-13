@@ -1,2 +1,0 @@
-#!/usr/bin/env zsh
-alias spotify='flatpak run com.spotify.Client &'

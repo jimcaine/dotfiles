@@ -22,7 +22,7 @@ sudo pacman -Syu --noconfirm git curl wget base-devel rustup go ruby \
   gcc g++ make cmake zsh unzip neofetch htop vim neovim man-db tldr \
   ripgrep tmux github-cli fzf docker xclip amd-ucode jq yq lazygit \
   cronie ffmpeg imagemagick mpv linux-firmware libva-utils openssh \
-  bluez bluez-utils sddm noto-fonts noto-fonts-cjk chromium
+  bluez bluez-utils sddm noto-fonts noto-fonts-cjk chromium nwg-look
 
 # configure git
 git config --global init.defaultBranch main
@@ -55,7 +55,7 @@ yay -Syu --noconfirm \
   kitty oh-my-posh hyprland waybar swaybg swaylock-effects rofi wlogout mako \
   thunar ttf-meslo-nerd-font-powerlevel10k ttf-jetbrains-mono-nerd noto-fonts-emoji \
   python-requests polkit-gnome swappy grim slurp pamixer brightnessctl gvfs \
-  lxappearance xfce4-settings dracula-gtk-theme dracula-icons-git \
+  xfce4-settings dracula-gtk-theme dracula-icons-git \
   xdg-desktop-portal-hyprland python-pywal hyprshade kclock kweather \
   brave-bin spotify webull-desktop nwg-dock-hyprland
 

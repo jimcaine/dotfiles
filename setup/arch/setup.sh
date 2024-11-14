@@ -22,8 +22,7 @@ sudo pacman -Syu --noconfirm git curl wget base-devel rustup go ruby \
   gcc g++ make cmake zsh unzip neofetch htop vim neovim man-db tldr \
   ripgrep tmux github-cli fzf docker xclip amd-ucode jq yq lazygit \
   cronie ffmpeg imagemagick mpv linux-firmware libva-utils openssh \
-  bluez bluez-utils sddm qt5‑graphicaleffects qt5‑quickcontrols2 \
-  qt5‑svg
+  bluez bluez-utils sddm noto-fonts noto-fonts-cjk chromium
 
 # configure git
 git config --global init.defaultBranch main

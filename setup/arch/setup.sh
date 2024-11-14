@@ -57,7 +57,7 @@ yay -Syu --noconfirm \
   python-requests polkit-gnome swappy grim slurp pamixer brightnessctl gvfs \
   lxappearance xfce4-settings dracula-gtk-theme dracula-icons-git \
   xdg-desktop-portal-hyprland python-pywal hyprshade kclock kweather \
-  brave-bin spotify webull-desktop
+  brave-bin spotify webull-desktop nwg-dock-hyprland
 
 ./$ARCH_MODULES/_dotfiles.sh
 

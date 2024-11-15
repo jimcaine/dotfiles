@@ -1,0 +1,5 @@
+alias pacnc='sudo pacman -Sy --noconfirm'
+alias pacup='sudo pacman -Syu --noconfirm'
+alias yaync='yay -Sy --noconfirm'
+alias yayup='yay -Syu --noconfirm'
+alias archup='sudo pacman -Sy --noconfirm && yay -Syu --noconfirm'

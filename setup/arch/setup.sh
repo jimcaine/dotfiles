@@ -23,7 +23,7 @@ sudo pacman -Syu --noconfirm git curl wget base-devel rustup go ruby \
   ripgrep tmux github-cli fzf docker xclip amd-ucode jq yq lazygit \
   cronie ffmpeg imagemagick mpv linux-firmware libva-utils openssh \
   bluez bluez-utils sddm noto-fonts noto-fonts-cjk chromium nwg-look \
-  gimp yazi
+  gimp yazi sqlitebrowser
 
 # configure git
 git config --global init.defaultBranch main

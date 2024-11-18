@@ -36,6 +36,7 @@ sudo pacman -Syu --noconfirm \
   bluez \
   bluez-utils \
   zsh \
+  tree \
   neofetch \
   htop \
   vim \

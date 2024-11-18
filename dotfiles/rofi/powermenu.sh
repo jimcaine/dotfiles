@@ -1,7 +1,8 @@
 #/bin/sh
-selection=$(printf "Logout\nRestart\nShutdown" | rofi -dmenu -i -theme-str '@import ".config/rofi/power.rasi"')
+selection=$(printf "Lock\nLogout\nRestart\nShutdown" | rofi -dmenu -i -theme-str '@import ".config/rofi/power.rasi"')
 
 case "$selection" in
+  "Lock") hyprlock ;;
   "Logout") hyprctl dispatch exit ;;
   "Restart") reboot ;;
   "Shutdown") shutdown now;;

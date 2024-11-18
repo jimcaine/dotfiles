@@ -18,12 +18,54 @@ sleep 5
 # update sys
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
-sudo pacman -Syu --noconfirm git curl wget base-devel rustup go ruby \
-  gcc g++ make cmake zsh unzip neofetch htop vim neovim man-db tldr \
-  ripgrep tmux github-cli fzf docker xclip amd-ucode jq yq lazygit \
-  cronie ffmpeg imagemagick mpv linux-firmware libva-utils openssh \
-  bluez bluez-utils sddm noto-fonts noto-fonts-cjk chromium nwg-look \
-  gimp yazi sqlitebrowser
+sudo pacman -Syu --noconfirm \
+  git \
+  curl \
+  wget \
+  base-devel \
+  rustup \
+  go \
+  ruby \
+  gcc \
+  g++ \
+  make \
+  cmake \
+  noto-fonts \
+  noto-fonts-cjk \
+  openssh \
+  bluez \
+  bluez-utils \
+  zsh \
+  neofetch \
+  htop \
+  vim \
+  neovim \
+  lazygit \
+  fzf \
+  jq \
+  yq \
+  man-db \
+  tldr \
+  github-cli \
+  tmux \
+  cronie \
+  unzip \
+  xclip \
+  docker \
+  docker-compose \
+  ripgrep \
+  linux-firmware \
+  amd-ucode \
+  libva-utils \
+  ffmpeg \
+  imagemagick \
+  mpv \
+  sddm \
+  chromium \
+  nwg-look \
+  gimp \
+  yazi \
+  sqlitebrowser
 
 # configure git
 git config --global init.defaultBranch main
@@ -42,7 +84,7 @@ git clone https://github.com/jimcaine/dotfiles.git ~/.dotfiles
 chsh -s /usr/bin/zsh
 reboot
 
-# ...
+echo 'source $HOME/.config/zsh/arch.zshrc' >> $HOME/.zshrc
 ./$ARCH_MODULES/_rust.sh
 ./$ARCH_MODULES/_python.sh
 ./$ARCH_MODULES/_uv.sh
@@ -53,12 +95,39 @@ reboot
 ./$ARCH_MODULES/_aur.sh
 
 yay -Syu --noconfirm \
-  kitty oh-my-posh hyprland waybar swaybg swaylock-effects rofi wlogout mako \
-  thunar ttf-meslo-nerd-font-powerlevel10k ttf-jetbrains-mono-nerd noto-fonts-emoji \
-  python-requests polkit-gnome swappy grim slurp pamixer brightnessctl gvfs \
-  xfce4-settings dracula-gtk-theme dracula-icons-git \
-  xdg-desktop-portal-hyprland python-pywal hyprshade kclock kweather \
-  brave-bin spotify webull-desktop nwg-dock-hyprland hyprshot hyprlock
+  kitty \
+  oh-my-posh \
+  sonar-scanner \
+  python-requests \
+  hyprland \
+  nwg-dock-hyprland \
+  hyprshot \
+  hyprlock \
+  hyprshade \
+  xdg-desktop-portal-hyprland \
+  rofi \
+  waybar \
+  swaybg \
+  swaylock-effects \
+  wlogout \
+  mako \
+  thunar \
+  ttf-meslo-nerd-font-powerlevel10k \
+  ttf-jetbrains-mono-nerd noto-fonts-emoji \
+  polkit-gnome \
+  swappy \
+  grim \
+  slurp \
+  pamixer \
+  brightnessctl \
+  gvfs \
+  xfce4-settings \
+  dracula-gtk-theme \
+  dracula-icons-git \
+  python-pywal \
+  brave-bin \
+  spotify \
+  webull-desktop
 
 ./$ARCH_MODULES/_dotfiles.sh
 

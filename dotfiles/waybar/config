@@ -33,7 +33,7 @@
 
   "custom/appmenu": {
     "format": "󰣇",
-    "on-click": "rofi -show drun",
+    "on-click": "rofi -show drun -theme ~/.config/rofi/themes/launchpad.rasi",
   },
 
   "hyprland/window": {

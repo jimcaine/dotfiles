@@ -23,7 +23,7 @@
           "properties": {
             "cache_duration": "none"
           },
-          "template": "{{.Icon}} ",
+          "template": " {{.Icon}} ",
           "foreground": "p:dutch_white",
           "type": "os",
           "style": "plain"

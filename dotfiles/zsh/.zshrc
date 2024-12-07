@@ -12,3 +12,7 @@ source $HOME/.config/zsh/tree.zshrc
 source $HOME/.config/zsh/tmuxinator.zshrc
 source $HOME/.config/zsh/browser-apps.zshrc
 source $HOME/.config/zsh/gcloud.zshrc
+source $HOME/.config/zsh/sonar.zshrc
+
+# uncomment to enable os specific configurations
+# source $HOME/.config/zsh/arch.zshrc

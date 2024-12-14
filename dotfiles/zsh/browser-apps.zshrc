@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
-alias espn="brave --app=https://espn.com"
-alias trello="brave --app=https://trello.com"
-alias gpt="brave --app=https://chatgpt.com"
+
+BROWSER="firefox"
+
+alias espn="$BROWSER --app=https://www.espn.com"
+alias trello="$BROWSER --app=https://trello.com"
+alias gpt="$BROWSER --app=https://chatgpt.com"
+alias tv="$BROWSER --app=https://tv.youtube.com"
+alias youtube="$BROWSER --app=https://www.youtube.com"

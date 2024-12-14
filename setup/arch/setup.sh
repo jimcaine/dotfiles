@@ -63,6 +63,7 @@ sudo pacman -Syu --noconfirm \
   mpv \
   sddm \
   chromium \
+  firefox \
   nwg-look \
   gimp \
   yazi \
@@ -126,7 +127,6 @@ yay -Syu --noconfirm \
   dracula-gtk-theme \
   dracula-icons-git \
   python-pywal \
-  brave-bin \
   spotify \
   webull-desktop
 

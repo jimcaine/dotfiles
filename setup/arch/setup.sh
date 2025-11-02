@@ -1,141 +1,235 @@
 #!/usr/bin/bash
 # Arch Linux Installer
+
+# user config
 WIFI_NAME=
 WIFI_PASSWORD=
 GIT_EMAIL=
 GIT_NAME=
-ARCH_MODULES=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
-COMMON_MODULES="${ARCH_MODULES}/../common"
-echo "Arch modules dir: $ARCH_MODULES"
-echo "Common modules dir: ${COMMON_MODULES}"
 
+# confirm to user that setup is starting
 echo "Executing setup.sh in 5 seconds..."
 sleep 5
 
+# connect to wifi
 nmcli device wifi connect ${WIFI_NAME} password ${WIFI_PASSWORD}
 sleep 5
 
-# update sys
+# Create
+mkdir -p $HOME/.local/share/wallpapers
+mkdir -p $HOME/.cargo/bin
+mkdir -p $HOME/.tmux/plugins
+mkdir -p $HOME/.age
+mkdir -p $HOME/.sops
+mkdir -p $HOME/.cache/wal
+touch $HOME/.cache/wal/colors-waybar.css
+
+# update & configure pacman package manager
+sudo pacman -Syu
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
+
+# install pacman packages
 sudo pacman -Syu --noconfirm \
-  git \
-  curl \
-  wget \
+  age \
+  alsa-utils \
   base-devel \
-  rustup \
-  go \
-  ruby \
-  gcc \
-  g++ \
-  make \
-  cmake \
-  noto-fonts \
-  noto-fonts-cjk \
-  openssh \
+  blueman \
   bluez \
   bluez-utils \
-  zsh \
-  tree \
-  neofetch \
-  htop \
-  vim \
-  neovim \
-  lazygit \
-  fzf \
-  jq \
-  yq \
-  man-db \
-  tldr \
-  github-cli \
-  tmux \
+  chromium \
+  cmake \
+  cmatrix \
   cronie \
-  unzip \
-  xclip \
+  curl \
   docker \
   docker-compose \
-  ripgrep \
-  linux-firmware \
-  amd-ucode \
-  libva-utils \
   ffmpeg \
-  imagemagick \
-  mpv \
-  sddm \
-  chromium \
   firefox \
-  nwg-look \
+  fzf \
+  gcc \
   gimp \
+  git \
+  github-cli \
+  go \
+  gst-plugins-good \
+  gst-plugins-bad \
+  gst-plugins-ugly \
+  gst-plugins-base \
+  htop \
+  imagemagick \
+  jq \
+  libva-mesa-driver \
+  libva-utils \
+  libvdpau-va-gl \
+  lxappearance \
+  make \
+  man-db \
+  mesa \
+  mesa-vdpau \
+  mpv \
+  neovim \
+  networkmanager \
+  noto-fonts \
+  noto-fonts-cjk \
+  nwg-look \
+  obsidian \
+  openssh \
+  pavucontrol \
+  pulseaudio \
+  pulseaudio-alsa \
+  ripgrep \
+  ruby \
+  rustup \
+  sddm \
+  sops \
+  sqlitebrowser \
+  tldr \
+  tmux \
+  tree \
+  ttf-meslo-nerd \
+  unzip \
+  vdpauinfo \
+  vim \
+  vulkan-radeon \
+  wget \
+  wine \
+  xclip \
   yazi \
-  sqlitebrowser
+  yq \
+  zsh
+
 
 # configure git
 git config --global init.defaultBranch main
-git config --global user.email ${GIT_EMAIL}
 git config --global user.name ${GIT_NAME}
+git config --global user.email ${GIT_EMAIL}
+git config --global color.ui auto
 
-# download dotfiles
-git clone https://github.com/jimcaine/dotfiles.git ~/.dotfiles
 
-# generate keys
-./$COMMON_MODULES/_gen_key_ssh.sh
-./$COMMON_MODULES/_gen_key_gpg.sh
+# setup rust
+rustup default stable
 
-# zsh / reboot
-./$COMMON_MODULES/_zsh.sh
-chsh -s /usr/bin/zsh
-reboot
 
-echo 'source $HOME/.config/zsh/arch.zshrc' >> $HOME/.zshrc
-./$ARCH_MODULES/_rust.sh
-./$ARCH_MODULES/_python.sh
-./$ARCH_MODULES/_uv.sh
-./$ARCH_MODULES/_javascript.sh
-./$ARCH_MODULES/_tpm.sh
-./$ARCH_MODULES/_docker.sh
-./$ARCH_MODULES/_gcloud.sh
-./$ARCH_MODULES/_aur.sh
+# install pyenv / python
+sudo curl https://pyenv.run | bash
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+pyenv install 3.12
+pyenv global 3.12
+pip install --upgrade pip
+pip install cython pytoml pyyaml setuptools virtualenv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
+
+# install nvm / npm / node
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install --lts
+nvm use --lts
+npm install -g npm
+npm install -g yarn
+
+
+# install tpm (tmux plugin manager)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+
+# install yay package manager
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+cd -
+rm -rf yay
+yay -Syu --noconfirm
+
+
+# download yay packages
 yay -Syu --noconfirm \
-  kitty \
-  oh-my-posh \
-  sonar-scanner \
-  python-requests \
-  hyprland \
-  nwg-dock-hyprland \
-  hyprshot \
-  hyprlock \
-  hyprshade \
-  xdg-desktop-portal-hyprland \
-  rofi \
-  waybar \
-  swaybg \
-  swaylock-effects \
-  wlogout \
-  mako \
-  thunar \
-  ttf-meslo-nerd-font-powerlevel10k \
-  ttf-jetbrains-mono-nerd noto-fonts-emoji \
-  polkit-gnome \
-  swappy \
-  grim \
-  slurp \
-  pamixer \
   brightnessctl \
-  gvfs \
-  xfce4-settings \
   dracula-gtk-theme \
   dracula-icons-git \
+  google-cloud-cli \
+  google-cloud-cli-gsutil \
+  grim \
+  hyprland \
+  hyprlock \
+  hyprshade \
+  hyprshot \
+  kclock \
+  kitty \
+  kweather \
+  lazygit \
+  librewolf-bin \
+  linux-firmware \
+  mako \
+  neofetch \
+  noto-fonts-emoji \
+  nwg-dock-hyprland \
+  oh-my-posh \
+  pamixer \
+  polkit-gnome \
   python-pywal \
+  python-requests \
+  rofi \
+  sddm-theme-sugar-candy-git \
+  sddm-theme-greenleaf \
+  slurp \
+  sonar-scanner \
   spotify \
-  webull-desktop
+  swappy \
+  swaybg \
+  swaylock-effects \
+  thunar \
+  ttf-jetbrains-mono-nerd \
+  ttf-meslo-nerd-font-powerlevel10k \
+  waybar \
+  webull-desktop \
+  xdg-desktop-portal-hyprland \
+  xfce4-settings
 
-./$ARCH_MODULES/_dotfiles.sh
+
+# pull dotfiles
+git clone https://github.com/jimcaine/dotfiles.git ~/.dotfiles
+cp -r ~/.dotfiles/dotfiles/hypr $HOME/hypr
+cp -r ~/.dotfiles/dotfiles/nvim $HOME/nvim
+cp -r ~/.dotfiles/dotfiles/rofi $HOME/rofi
+cp -r ~/.dotfiles/dotfiles/kitty $HOME/kitty
+cp -r ~/.dotfiles/dotfiles/waybar $HOME/waybar
+cp -r ~/.dotfiles/dotfiles/nwg-dock-hyprland $HOME/nwg-dock-hyprland
+cp -r ~/.dotfiles/dotfiles/oh-my-posh $HOME/oh-my-posh
+cp -r ~/.dotfiles/dotfiles/sddm $HOME/sddm
+cp ~/.dotfiles/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
+cp ~/.dotfiles/dotfiles/wallpaper/* $HOME/.local/share/wallpapers/
+sudo cp ~/.dotfiles/dotfiles/sddm/sddm.conf /etc/sddm.conf
+sudo cp ~/.dotfiles/dotfiles/sddm/themes/sugar-candy.conf /usr/share/sddm/themes/Sugar-Candy/theme.conf
+sudo cp ~/.dotfiles/dotfiles/wallpaper/winter-bison.jpg /usr/share/sddm/themes/Sugar-Candy/Backgrounds/WinterBison.jpg
 
 
+# enable services
+sudo systemctl enable --now NetworkManager
+sudo systemctl enable --now bluetooth
+sudo systemctl enable --now docker
+sudo systemctl enable --now cronie
+sudo systemctl enable sddm
+systemctl --user enable pulseaudio.service
+systemctl --user enable pulseaudio.socket
+systemctl --user start pulseaudio.service
+systemctl --user start pulseaudio.socket
+
+
+# generate keys
+ssh-keygen -t ed25519 -C "${GIT_EMAIL}"
+gpg --full-generate-key
+
+# set default browser
+xdg-settings set default-web-browser firefox.desktop
+
+# rebuild font cache
+fc-cache -fv
+
+# reboot system
 reboot
-exec Hyprland
-
-git remote -v
-git remote set-url git@github.com:jimcaine/dotfiles
-git remote -v

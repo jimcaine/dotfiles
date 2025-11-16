@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Youtube TV
+GenericName=Youtube TV
+Comment=Youtube TV
+Icon=$HOME/.local/share/icons/youtube-tv.png
+Exec=chromium --app="https://tv.youtube.com"
+Terminal=false

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=ESPN
+GenericName=ESPN
+Comment=ESPN
+Icon=$HOME/.local/share/icons/espn.png
+Exec=chromium --app="https://www.espn.com"
+Terminal=false

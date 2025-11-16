@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Claude AI
+Icon=$HOME/.local/share/icons/claude-ai
+Exec=chromium --app="https://www.claude.ai"
+Terminal=false

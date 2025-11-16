@@ -57,6 +57,7 @@ sudo pacman -Syu --noconfirm \
   gst-plugins-ugly \
   gst-plugins-base \
   htop \
+  hunspell-en_us \
   imagemagick \
   jq \
   libva-mesa-driver \
@@ -70,6 +71,8 @@ sudo pacman -Syu --noconfirm \
   mpv \
   neovim \
   networkmanager \
+  networkmanager-applet \
+  nm-connection-editor \
   noto-fonts \
   noto-fonts-cjk \
   nwg-look \
@@ -84,6 +87,7 @@ sudo pacman -Syu --noconfirm \
   sddm \
   sops \
   sqlitebrowser \
+  thunderbird \
   tldr \
   tmux \
   tree \
@@ -94,6 +98,7 @@ sudo pacman -Syu --noconfirm \
   vulkan-radeon \
   wget \
   wine \
+  wl-clipboard \
   xclip \
   yazi \
   yq \
@@ -119,7 +124,7 @@ eval "$(pyenv init --path)"
 pyenv install 3.12
 pyenv global 3.12
 pip install --upgrade pip
-pip install cython pytoml pyyaml setuptools virtualenv
+pip install build cython pytoml pyyaml setuptools virtualenv wheel
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 
@@ -150,6 +155,7 @@ yay -Syu --noconfirm
 # download yay packages
 yay -Syu --noconfirm \
   brightnessctl \
+  chromium-widevine \
   dracula-gtk-theme \
   dracula-icons-git \
   google-cloud-cli \
@@ -166,14 +172,20 @@ yay -Syu --noconfirm \
   librewolf-bin \
   linux-firmware \
   mako \
+  mongodb-compass-bin \
   neofetch \
   noto-fonts-emoji \
   nwg-dock-hyprland \
   oh-my-posh \
   pamixer \
   polkit-gnome \
+  pulseaudio-ctl \
+  python-build \
+  python-pip \
   python-pywal \
   python-requests \
+  python-setuptools \
+  python-wheel \
   rofi \
   sddm-theme-sugar-candy-git \
   sddm-theme-greenleaf \
@@ -188,6 +200,7 @@ yay -Syu --noconfirm \
   ttf-meslo-nerd-font-powerlevel10k \
   waybar \
   webull-desktop \
+  wlogout \
   xdg-desktop-portal-hyprland \
   xfce4-settings
 
@@ -202,6 +215,7 @@ cp -r ~/.dotfiles/dotfiles/waybar $HOME/waybar
 cp -r ~/.dotfiles/dotfiles/nwg-dock-hyprland $HOME/nwg-dock-hyprland
 cp -r ~/.dotfiles/dotfiles/oh-my-posh $HOME/oh-my-posh
 cp -r ~/.dotfiles/dotfiles/sddm $HOME/sddm
+cp -r ~/.dotfiles/dotfiles/wlogout $HOME/wlogout
 cp ~/.dotfiles/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 cp ~/.dotfiles/dotfiles/wallpaper/* $HOME/.local/share/wallpapers/
 sudo cp ~/.dotfiles/dotfiles/sddm/sddm.conf /etc/sddm.conf
@@ -215,21 +229,30 @@ sudo systemctl enable --now bluetooth
 sudo systemctl enable --now docker
 sudo systemctl enable --now cronie
 sudo systemctl enable sddm
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 systemctl --user enable pulseaudio.service
 systemctl --user enable pulseaudio.socket
 systemctl --user start pulseaudio.service
 systemctl --user start pulseaudio.socket
 
 
+# set up docker
+sudo usermod -aG docker $USER
+
+
 # generate keys
 ssh-keygen -t ed25519 -C "${GIT_EMAIL}"
 gpg --full-generate-key
 
+
 # set default browser
 xdg-settings set default-web-browser firefox.desktop
 
+
 # rebuild font cache
 fc-cache -fv
+
 
 # reboot system
 reboot

@@ -1,42 +1,80 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+
 # Arch Linux Installer
 
-# user config
-WIFI_NAME=
-WIFI_PASSWORD=
-GIT_EMAIL=
-GIT_NAME=
+# Check if running as root (should not be)
+if [[ $EUID -eq 0 ]]; then
+   echo "This script must NOT be run as root" 
+   exit 1
+fi
 
-# confirm to user that setup is starting
-echo "Executing setup.sh in 5 seconds..."
+# User configuration
+echo "=== Arch Linux Setup Configuration ==="
+echo ""
+
+while [[ -z "${GIT_EMAIL:-}" ]]; do
+  read -rp "Enter your Git email: " GIT_EMAIL
+  if [[ ! "$GIT_EMAIL" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+    echo "Invalid email format. Please try again."
+    GIT_EMAIL=""
+  fi
+done
+
+while [[ -z "${GIT_NAME:-}" ]]; do
+  read -rp "Enter your Git username: " GIT_NAME
+done
+
+# Confirm configuration with user
+echo ""
+echo "=== Configuration Summary ==="
+echo "Git Email: $GIT_EMAIL"
+echo "Git Name: $GIT_NAME"
+echo ""
+read -rp "Is this correct? (y/n): " confirm
+if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+  echo "Setup cancelled. Please run the script again."
+  exit 0
+fi
+
+echo ""
+echo "Starting setup in 5 seconds... (Ctrl+C to cancel)"
 sleep 5
 
-# connect to wifi
-nmcli device wifi connect ${WIFI_NAME} password ${WIFI_PASSWORD}
-sleep 5
+# Log file for debugging
+LOGFILE="$HOME/arch-setup-$(date +%Y%m%d-%H%M%S).log"
+echo "Logging to: $LOGFILE"
+exec > >(tee -a "$LOGFILE") 2>&1
 
-# Create
-mkdir -p $HOME/.local/share/wallpapers
-mkdir -p $HOME/.cargo/bin
-mkdir -p $HOME/.tmux/plugins
-mkdir -p $HOME/.age
-mkdir -p $HOME/.sops
-mkdir -p $HOME/.cache/wal
-touch $HOME/.cache/wal/colors-waybar.css
+echo "=== Starting Arch Linux Setup ==="
 
-# update & configure pacman package manager
-sudo pacman -Syu
+# Initialize file system structure
+echo "Creating directory structure..."
+mkdir -p "$HOME"/.local/share/wallpapers
+mkdir -p "$HOME"/.cargo/bin
+mkdir -p "$HOME"/.tmux/plugins
+mkdir -p "$HOME"/.age
+mkdir -p "$HOME"/.sops
+mkdir -p "$HOME"/.cache/wal
+touch "$HOME"/.cache/wal/colors-waybar.css
+
+# Update & configure pacman package manager
+echo "Updating pacman and initializing keyring..."
+sudo pacman -Syu --noconfirm
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
 
-# install pacman packages
+# Install pacman packages
+echo "Installing base packages from official repositories..."
 sudo pacman -Syu --noconfirm \
   age \
   alsa-utils \
   base-devel \
+  bat \
   blueman \
   bluez \
   bluez-utils \
+  btop \
   chromium \
   cmake \
   cmatrix \
@@ -63,11 +101,11 @@ sudo pacman -Syu --noconfirm \
   libva-mesa-driver \
   libva-utils \
   libvdpau-va-gl \
-  lxappearance \
   make \
   man-db \
   mesa \
   mesa-vdpau \
+  mesa-utils \
   mpv \
   neovim \
   networkmanager \
@@ -77,10 +115,14 @@ sudo pacman -Syu --noconfirm \
   noto-fonts-cjk \
   nwg-look \
   obsidian \
+  ollama \
   openssh \
+  pamixer \
   pavucontrol \
-  pulseaudio \
-  pulseaudio-alsa \
+  pipewire \
+  pipewire-alsa \
+  pipewire-pulse \
+  reflector \
   ripgrep \
   ruby \
   rustup \
@@ -97,39 +139,47 @@ sudo pacman -Syu --noconfirm \
   vim \
   vulkan-radeon \
   wget \
-  wine \
+  wireplumber \
   wl-clipboard \
   xclip \
   yazi \
   yq \
+  zip \
   zsh
 
-
-# configure git
+# Configure git
+echo "Configuring git..."
 git config --global init.defaultBranch main
-git config --global user.name ${GIT_NAME}
-git config --global user.email ${GIT_EMAIL}
+git config --global user.name "${GIT_NAME}"
+git config --global user.email "${GIT_EMAIL}"
 git config --global color.ui auto
 
-
-# setup rust
+# Setup rust
+echo "Setting up Rust..."
 rustup default stable
 
-
-# install pyenv / python
-sudo curl https://pyenv.run | bash
+# Install pyenv / python
+echo "Installing pyenv and Python 3.12..."
+if ! command -v pyenv &> /dev/null; then
+  curl https://pyenv.run | bash
+fi
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-pyenv install 3.12
+
+if ! pyenv versions | grep -q "3.12"; then
+  pyenv install 3.12
+fi
 pyenv global 3.12
 pip install --upgrade pip
 pip install build cython pytoml pyyaml setuptools virtualenv wheel
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-
-# install nvm / npm / node
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+# Install nvm / npm / node
+echo "Installing nvm, Node.js, and npm..."
+if [[ ! -d "$HOME/.nvm" ]]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -138,28 +188,31 @@ nvm use --lts
 npm install -g npm
 npm install -g yarn
 
+# Install tpm (tmux plugin manager)
+echo "Installing tmux plugin manager..."
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
 
-# install tpm (tmux plugin manager)
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-
-# install yay package manager
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd -
-rm -rf yay
+# Install yay package manager
+echo "Installing yay AUR helper..."
+if ! command -v yay &> /dev/null; then
+  git clone https://aur.archlinux.org/yay.git /tmp/yay
+  cd /tmp/yay
+  makepkg -si --noconfirm
+  cd -
+  rm -rf /tmp/yay
+fi
 yay -Syu --noconfirm
 
-
-# download yay packages
+# Download yay packages
+echo "Installing AUR packages..."
 yay -Syu --noconfirm \
   brightnessctl \
   chromium-widevine \
   dracula-gtk-theme \
   dracula-icons-git \
   google-cloud-cli \
-  google-cloud-cli-gsutil \
   grim \
   hyprland \
   hyprlock \
@@ -169,17 +222,13 @@ yay -Syu --noconfirm \
   kitty \
   kweather \
   lazygit \
-  librewolf-bin \
-  linux-firmware \
   mako \
   mongodb-compass-bin \
   neofetch \
   noto-fonts-emoji \
   nwg-dock-hyprland \
   oh-my-posh \
-  pamixer \
   polkit-gnome \
-  pulseaudio-ctl \
   python-build \
   python-pip \
   python-pywal \
@@ -188,9 +237,7 @@ yay -Syu --noconfirm \
   python-wheel \
   rofi \
   sddm-theme-sugar-candy-git \
-  sddm-theme-greenleaf \
   slurp \
-  sonar-scanner \
   spotify \
   swappy \
   swaybg \
@@ -199,60 +246,118 @@ yay -Syu --noconfirm \
   ttf-jetbrains-mono-nerd \
   ttf-meslo-nerd-font-powerlevel10k \
   waybar \
-  webull-desktop \
-  wlogout \
   xdg-desktop-portal-hyprland \
   xfce4-settings
 
+# Pull dotfiles
+echo "Cloning and configuring dotfiles..."
+if [[ ! -d "$HOME/.dotfiles" ]]; then
+  git clone https://github.com/jimcaine/dotfiles.git "$HOME/.dotfiles"
+fi
 
-# pull dotfiles
-git clone https://github.com/jimcaine/dotfiles.git ~/.dotfiles
-cp -r ~/.dotfiles/dotfiles/hypr $HOME/hypr
-cp -r ~/.dotfiles/dotfiles/nvim $HOME/nvim
-cp -r ~/.dotfiles/dotfiles/rofi $HOME/rofi
-cp -r ~/.dotfiles/dotfiles/kitty $HOME/kitty
-cp -r ~/.dotfiles/dotfiles/waybar $HOME/waybar
-cp -r ~/.dotfiles/dotfiles/nwg-dock-hyprland $HOME/nwg-dock-hyprland
-cp -r ~/.dotfiles/dotfiles/oh-my-posh $HOME/oh-my-posh
-cp -r ~/.dotfiles/dotfiles/sddm $HOME/sddm
-cp -r ~/.dotfiles/dotfiles/wlogout $HOME/wlogout
-cp ~/.dotfiles/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
-cp ~/.dotfiles/dotfiles/wallpaper/* $HOME/.local/share/wallpapers/
-sudo cp ~/.dotfiles/dotfiles/sddm/sddm.conf /etc/sddm.conf
-sudo cp ~/.dotfiles/dotfiles/sddm/themes/sugar-candy.conf /usr/share/sddm/themes/Sugar-Candy/theme.conf
-sudo cp ~/.dotfiles/dotfiles/wallpaper/winter-bison.jpg /usr/share/sddm/themes/Sugar-Candy/Backgrounds/WinterBison.jpg
+# Copy configuration files
+cp -r "$HOME/.dotfiles/dotfiles/hypr" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/kitty" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/nvim" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/nwg-dock-hyprland" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/oh-my-posh" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/rofi" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/sddm" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/waybar" "$HOME/.config/"
+cp -r "$HOME/.dotfiles/dotfiles/zsh" "$HOME/.config/"
+cp "$HOME/.dotfiles/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
+cp "$HOME/.dotfiles/dotfiles/wallpaper/"* "$HOME/.local/share/wallpapers/"
+cp "$HOME/.dotfiles/dotfiles/zsh/.zshrc" "$HOME/.zshrc"
 
+# Copy SDDM configuration (requires sudo)
+sudo cp "$HOME/.dotfiles/dotfiles/sddm/sddm.conf" /etc/sddm.conf
+if [[ -f "$HOME/.dotfiles/dotfiles/sddm/themes/sugar-candy.conf" ]]; then
+  sudo cp "$HOME/.dotfiles/dotfiles/sddm/themes/sugar-candy.conf" /usr/share/sddm/themes/Sugar-Candy/theme.conf
+fi
+if [[ -f "$HOME/.dotfiles/dotfiles/wallpaper/winter-bison.jpg" ]]; then
+  sudo cp "$HOME/.dotfiles/dotfiles/wallpaper/winter-bison.jpg" /usr/share/sddm/themes/Sugar-Candy/Backgrounds/WinterBison.jpg
+fi
 
-# enable services
+# Enable services
+echo "Enabling system services..."
 sudo systemctl enable --now NetworkManager
 sudo systemctl enable --now bluetooth
 sudo systemctl enable --now docker
 sudo systemctl enable --now cronie
 sudo systemctl enable sddm
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
-systemctl --user enable pulseaudio.service
-systemctl --user enable pulseaudio.socket
-systemctl --user start pulseaudio.service
-systemctl --user start pulseaudio.socket
 
+# PipeWire (replaces PulseAudio)
+systemctl --user enable --now pipewire.service
+systemctl --user enable --now pipewire-pulse.service
+systemctl --user enable --now wireplumber.service
 
-# set up docker
-sudo usermod -aG docker $USER
+# Set up docker group
+echo "Adding user to docker group..."
+sudo usermod -aG docker "$USER"
+echo "NOTE: You'll need to log out and back in for docker group to take effect"
 
-
-# generate keys
-ssh-keygen -t ed25519 -C "${GIT_EMAIL}"
-gpg --full-generate-key
-
-
-# set default browser
+# Set default browser
+echo "Setting default browser..."
 xdg-settings set default-web-browser firefox.desktop
 
-
-# rebuild font cache
+# Rebuild font cache
+echo "Rebuilding font cache..."
 fc-cache -fv
 
+# Change default shell to zsh
+echo "Setting default shell to zsh..."
+if command -v zsh &> /dev/null; then
+  chsh -s "$(which zsh)"
+  echo "Default shell changed to zsh. Will take effect after reboot/re-login."
+else
+  echo "WARNING: zsh not found, skipping shell change"
+fi
 
-# reboot system
-reboot
+# Optional: Generate SSH and GPG keys
+echo ""
+read -rp "Generate SSH key? (y/n): " gen_ssh
+if [[ "$gen_ssh" =~ ^[Yy]$ ]]; then
+  if [[ ! -f "$HOME/.ssh/id_ed25519" ]]; then
+    ssh-keygen -t ed25519 -C "${GIT_EMAIL}"
+    echo "SSH key generated. Add to GitHub/GitLab:"
+    cat "$HOME/.ssh/id_ed25519.pub"
+  else
+    echo "SSH key already exists, skipping..."
+  fi
+fi
+
+echo ""
+read -rp "Generate GPG key? (y/n): " gen_gpg
+if [[ "$gen_gpg" =~ ^[Yy]$ ]]; then
+  if ! gpg --list-secret-keys | grep -q "$GIT_EMAIL"; then
+    gpg --full-generate-key
+  else
+    echo "GPG key for $GIT_EMAIL already exists, skipping..."
+  fi
+fi
+
+# Optional: GitHub Copilot CLI
+echo ""
+read -rp "Install GitHub Copilot CLI extension? (requires gh auth) (y/n): " install_copilot
+if [[ "$install_copilot" =~ ^[Yy]$ ]]; then
+  gh extension install github/gh-copilot || echo "Failed to install gh-copilot. You may need to run 'gh auth login' first."
+fi
+
+
+echo ""
+echo "=== Setup Complete ==="
+echo "Log file saved to: $LOGFILE"
+echo ""
+echo "IMPORTANT NEXT STEPS:"
+echo "1. Log out and back in for docker group to take effect"
+echo "2. If you generated an SSH key, add it to GitHub/GitLab"
+echo "3. Run 'gh auth login' if you want to use GitHub CLI"
+echo ""
+read -rp "Reboot now? (y/n): " do_reboot
+if [[ "$do_reboot" =~ ^[Yy]$ ]]; then
+  echo "Rebooting in 5 seconds..."
+  sleep 5
+  reboot
+else
+  echo "Setup complete! Reboot when ready."
+fi

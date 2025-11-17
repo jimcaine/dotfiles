@@ -1,7 +1,25 @@
 # Arch Installation & Setup
+### Download ISO & Write To USB
 * Download iso from mirrors page: `https://archlinux.org/download/#download-mirrors`.
+
+```bash
+# identify the drive
+lsblk
+
+# identify the drive (alternative)
+sudo fdisk -l
+
+# unmount if mounted
+sudo umount /dev/sdX1
+
+# write to usb
+sudo dd if=path/to/archlinux.iso of=/dev/sdX bs=4M status=progress oflag=sync
+```
+
+### Run Arch Install
 * Connect to wifi using `iwctl`.
 * Update `/etc/pacman.conf`.
+    * Uncomment `Color` and `ParallelDownloads = 5`, add `ILoveCandy` under `[options]`.
 * Run `archinstall`.
     * Choose local mirrors.
     * Configure disk - use `btrfs` by default.
@@ -14,29 +32,14 @@
     * Network configuration: `NetworkManager`
     * Update timezone
     * Install
-    * Chroot and perform post-installation steps.
-* Run `set.sh`.
-* Post install checklist:
-    * Login to git and set up ssh.
-    * Set up copilot.
-    * Login to gcloud cli.
-    * Download wallpapers.
+    * Reboot
 
-### Setup
+### Post Install
+#### Connect To Wifi
 ```bash
-export WIFI_NAME=...
-export WIFI_PASSWORD=...
-export GIT_EMAIL=""
-export GIT_NAME=""
-git clone https://github.com/jimcaine/dotfiles ~/.dotfiles
-bash ~/.dotfiles/setup.sh
+nmcli device wifi connect ${WIFI_NAME} password ${WIFI_PASSWORD}
+```
 
-# TODO::: refactor sddm
-sudo systemctl enable sddm.service
-sudo systemctl enable sddm.service --now # enable and logout
-
-# TODO::: refactor sddm themes
-wget ... # download from site
-sudo tar -xzvf sugar-candy.tar.gz
-sudo cp -r sugar-candy /usr/share/sddm/themes
+#### Run Setup Script
+```bash
 ```

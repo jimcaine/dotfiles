@@ -213,6 +213,7 @@ yay -Syu --noconfirm \
   dracula-gtk-theme \
   dracula-icons-git \
   google-cloud-cli \
+  google-cloud-cli-gsutil \
   grim \
   hyprland \
   hyprlock \

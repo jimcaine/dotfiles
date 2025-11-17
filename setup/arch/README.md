@@ -42,4 +42,5 @@ nmcli device wifi connect ${WIFI_NAME} password ${WIFI_PASSWORD}
 
 #### Run Setup Script
 ```bash
+curl https://raw.githubusercontent.com/jimcaine/dotfiles/refs/heads/main/setup/arch/setup.sh | bash
 ```

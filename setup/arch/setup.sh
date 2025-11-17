@@ -266,7 +266,9 @@ cp -r "$HOME/.dotfiles/dotfiles/sddm" "$HOME/.config/"
 cp -r "$HOME/.dotfiles/dotfiles/waybar" "$HOME/.config/"
 cp -r "$HOME/.dotfiles/dotfiles/zsh" "$HOME/.config/"
 cp "$HOME/.dotfiles/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
+cp "$HOME/.dotfiles/dotfiles/desktopapp/*.desktop" "$HOME/.local/share/applications/"
 cp "$HOME/.dotfiles/dotfiles/wallpaper/"* "$HOME/.local/share/wallpapers/"
+cp "$HOME/.dotfiles/assets/icons/"* "$HOME/.local/share/icons/"
 cp "$HOME/.dotfiles/dotfiles/zsh/.zshrc" "$HOME/.zshrc"
 
 # Copy SDDM configuration (requires sudo)

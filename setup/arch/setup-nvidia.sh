@@ -78,6 +78,7 @@ sudo pacman -Syu --noconfirm \
   docker \
   docker-compose \
   ffmpeg \
+  ffmpeg-nvenv \
   firefox \
   fzf \
   gcc \
@@ -93,13 +94,13 @@ sudo pacman -Syu --noconfirm \
   hunspell-en_us \
   imagemagick \
   jq \
-  libva-mesa-driver \
+  libglvnd \
+  libva \
+  libva-nvidia-driver \
   libva-utils \
-  libvdpau-va-gl \
   make \
   man-db \
   mesa \
-  mesa-vdpau \
   mesa-utils \
   mpv \
   neovim \
@@ -109,6 +110,9 @@ sudo pacman -Syu --noconfirm \
   noto-fonts \
   noto-fonts-cjk \
   nwg-look \
+  nvidia \
+  nvidia-utils \
+  nvidia-settings \
   obsidian \
   ollama \
   openssh \
@@ -132,7 +136,7 @@ sudo pacman -Syu --noconfirm \
   unzip \
   vdpauinfo \
   vim \
-  vulkan-radeon \
+  vulkan-icd-loader \
   wget \
   wireplumber \
   wl-clipboard \
@@ -211,6 +215,7 @@ yay -Syu --noconfirm \
   google-cloud-cli-gsutil \
   grim \
   hyprland \
+  hyprland-nvidia \
   hyprlock \
   hyprshade \
   hyprshot \
@@ -302,6 +307,24 @@ xdg-settings set default-web-browser firefox.desktop
 # Rebuild font cache
 echo "Rebuilding font cache..."
 fc-cache -fv
+
+# Set up nvidia
+echo "Setting up nvidia..."
+sudo touch /etc/environment
+sudo echo 'WLR_NO_HARDWARE_CURSORS=1' >> /etc/environment
+sudo echo 'LIBVA_DRIVER_NAME=nvidia' >> /etc/environment
+
+sudo tee /etc/udev/rules.d/90-nvidia-drm.rules >/dev/null <<EOF
+KERNEL=="nvidia", RUN+="/bin/bash -c 'echo 1 > /sys/module/nvidia_drm/parameters/modeset'"
+EOF
+
+sudo tee /etc/modprobe.d/nvidia.conf >/dev/null <<EOF
+options nvidia_drm modeset=1
+EOF
+
+sudo sed -i 's/^MODULES=(btrfs)$/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+sudo mkinitcpio -P
+sudo systemctl enable --now nvidia-resume.service
 
 # Change default shell to zsh
 echo "Setting default shell to zsh..."

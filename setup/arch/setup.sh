@@ -109,7 +109,7 @@ sudo pacman -Syu --noconfirm \
   mpv \
   neovim \
   networkmanager \
-  networkmanager-applet \
+  network-manager-applet \
   nm-connection-editor \
   noto-fonts \
   noto-fonts-cjk \
@@ -244,6 +244,7 @@ yay -Syu --noconfirm \
   swaybg \
   swaylock-effects \
   thunar \
+  tmuxinator \
   ttf-jetbrains-mono-nerd \
   ttf-meslo-nerd-font-powerlevel10k \
   waybar \

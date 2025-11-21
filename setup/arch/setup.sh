@@ -62,6 +62,7 @@ sudo pacman-key --populate archlinux
 # Install pacman packages
 echo "Installing base packages from official repositories..."
 sudo pacman -Syu --noconfirm --disable-download-timeout \
+  7zip \
   age \
   alsa-utils \
   base-devel \

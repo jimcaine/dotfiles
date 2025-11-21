@@ -141,6 +141,7 @@ sudo pacman -Syu --noconfirm --disable-download-timeout \
   yazi \
   yq \
   zip \
+  zoxide \
   zsh
 
 # Configure git
@@ -312,6 +313,9 @@ if command -v zsh &> /dev/null; then
 else
   echo "WARNING: zsh not found, skipping shell change"
 fi
+
+# Configure zoxide
+zoxide init zsh
 
 # Optional: Generate SSH and GPG keys
 echo ""

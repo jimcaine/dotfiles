@@ -66,7 +66,7 @@ sudo pacman -Syu --noconfirm --disable-download-timeout \
   alsa-utils \
   base-devel \
   bat \
-  blueman \
+  blueberry \
   bluez \
   bluez-utils \
   btop \

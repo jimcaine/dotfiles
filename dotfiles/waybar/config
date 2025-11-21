@@ -22,6 +22,7 @@
   "modules-center": ["hyprland/workspaces"],
 
   "modules-right": [
+    "network",
     "pulseaudio",
     "bluetooth",
     "custom/weather",
@@ -30,6 +31,15 @@
     "clock",
     "custom/logout",
   ],
+
+  "network": {
+    "format-wifi": "  {signalStrength}% | ",
+    "format-ethernet": "  {ipaddr} | ",
+    "format-disconnected": "睊 | ",
+    "tooltip-format": "{essid} ({signalStrength}%)\n{ipaddr}",
+    "max-length": 50,
+    "on-click": "nm-connection-editor"
+  },
 
   "custom/appmenu": {
     "format": "",
@@ -53,7 +63,7 @@
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "blueman-manager",
+    "on-click": "blueberry"
   },
 
   "battery": {
@@ -69,7 +79,7 @@
     "format-bluetooth": "{volume}% {icon} | ",
     "format-muted": " | ",
     "format-icons": {
-      "default": ["", ""]
+      "default": [" ", " "]
     },
     "scroll-step": 1,
     "on-click": "pavucontrol",

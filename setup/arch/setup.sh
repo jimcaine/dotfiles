@@ -226,6 +226,7 @@ yay -Syu --noconfirm \
   noto-fonts-emoji \
   nwg-dock-hyprland \
   oh-my-posh \
+  oh-my-zsh \
   polkit-gnome \
   python-build \
   python-pip \

@@ -1,0 +1,41 @@
+SUPER + SPACE              Application launcher ($menu)
+CTRL + SUPER + ALT + P     Region screenshot → clipboard
+CTRL + SUPER + ALT + J     Start dictation
+CTRL + SUPER + ALT + K     Stop dictation
+CTRL + SUPER + ALT + C     Grab color
+SUPER + SHIFT + W          Toggle topbar
+SUPER + SHIFT + D          Toggle dock
+SUPER + -                  Volume up (+5)
+SUPER + =                  Volume down (-5)
+SUPER + ENTER              Terminal ($terminal)
+SUPER + B                  Browser ($browser)
+SUPER + F                  File manager ($fileManager)
+SUPER + N                  Joplin
+SUPER + G                  GPT
+SUPER + T                  Trello
+ALT + SUPER + SHIFT + H    Move workspace to left monitor
+ALT + SUPER + SHIFT + L    Move workspace to right monitor
+SUPER + SHIFT + ESC        Exit Hyprland
+SUPER + ESC                Power Menu
+SUPER + Q                  Close active window
+SUPER + SHIFT + F          Toggle floating
+SUPER + SHIFT + T          Toggle split (dwindle)
+SUPER + P                  Toggle pseudo (dwindle)
+SUPER + H                  Resize window left  (-20)
+SUPER + L                  Resize window right (+20)
+SUPER + Mouse1             Move window
+SUPER + Mouse2             Resize window
+SUPER + K                  Move focus up
+SUPER + J                  Move focus down
+SUPER + TAB                Move focus right
+SUPER + SHIFT + TAB        Move focus left
+SUPER + 1–9                Workspace 1–9
+SUPER + 0                  Workspace 10
+SUPER + SHIFT + 1–9        Move to Workspace 1–9
+SUPER + SHIFT + 0          Move to Workspace 10
+SUPER + Mouse Wheel Down   Next workspace
+SUPER + Mouse Wheel Up     Previous workspace
+CTRL + Left                Previous workspace
+CTRL + Right               Next workspace
+SUPER + S                  Toggle special workspace (magic)
+SUPER + SHIFT + S          Move window to special workspace

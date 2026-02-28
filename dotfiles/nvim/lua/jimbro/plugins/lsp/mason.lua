@@ -19,6 +19,8 @@ return {
       },
     })
 
+    -- Note: mason-lspconfig still uses ensure_installed for now
+    -- It will handle installation, but vim.lsp.config handles configuration
     mason_lspconfig.setup({
       ensure_installed = {
         "gopls",
@@ -26,7 +28,7 @@ return {
         "lua_ls",
         "pyright",
         "rust_analyzer",
-        "tsserver",
+        "ts_ls",
         "cssls",
         "tailwindcss",
       },

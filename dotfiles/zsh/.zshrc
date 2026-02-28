@@ -14,6 +14,7 @@ source $HOME/.config/zsh/tmuxinator.zshrc
 source $HOME/.config/zsh/browser-apps.zshrc
 source $HOME/.config/zsh/gcloud.zshrc
 source $HOME/.config/zsh/weather.zshrc
+source $HOME/.config/zsh/eza.zshrc
 
 # uncomment to enable os specific configurations
 # source $HOME/.config/zsh/arch.zshrc

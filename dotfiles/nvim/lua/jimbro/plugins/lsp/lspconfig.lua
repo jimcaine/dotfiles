@@ -122,7 +122,7 @@ return {
     }
 
     -- TypeScript/JavaScript language server
-    vim.lsp.config.ts_ls = {
+    vim.lsp.config.tsserver = {
       cmd = { "typescript-language-server", "--stdio" },
       filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
       root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },

@@ -28,7 +28,7 @@ return {
         "lua_ls",
         "pyright",
         "rust_analyzer",
-        "ts_ls",
+        "tsserver",
         "cssls",
         "tailwindcss",
       },

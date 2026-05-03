@@ -1,3 +1,4 @@
 *secret*
 dotman/bin/*
 .DS_Store
+.claude/system.md
